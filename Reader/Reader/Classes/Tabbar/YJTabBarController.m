@@ -12,6 +12,7 @@
 #import "YJShelfViewController.h"
 #import "YJAnalysisViewController.h"
 #import "YJProfileViewController.h"
+#import "UIImage+YJImage.h"
 
 @interface YJTabBarController ()
 
@@ -22,13 +23,55 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setTabBarControllerConfiguration];
+    self.tabBar.tintColor = [UIColor redColor];
+}
+
+#pragma mark - 给tabbar图标添加动画
+- (void)viewWillLayoutSubviews
+{
+    [super viewWillLayoutSubviews];
+    for (UIView* subView in self.tabBar.subviews) {
+        if ([subView isKindOfClass:NSClassFromString(@"UITabBarButton")]) {
+            UIControl *tabbarBtn = (UIControl *)subView;
+            [tabbarBtn addTarget:self action:@selector(setAnimationFor:) forControlEvents:UIControlEventTouchUpInside];
+        }
+    }
 }
 
 #pragma mark - 配置控制器
 -(void)setTabBarControllerConfiguration{
+    UINavigationController *homeNav = [self setChild:[[YJHomeViewController alloc] init] WithTitle:@"首页" imageName:@"home" selectedImageName:@"home_selected"];
+    
+    UINavigationController *shelfNav = [self setChild:[[YJShelfViewController alloc] init] WithTitle:@"书架" imageName:@"shelf" selectedImageName:@"shelf_selected"];
+    
+    UINavigationController *analysisNav = [self setChild:[[YJAnalysisViewController alloc] init] WithTitle:@"分析" imageName:@"analysis" selectedImageName:@"analysis_selected"];
+    
+    UINavigationController *profileNav = [self setChild:[[YJProfileViewController alloc] init] WithTitle:@"我的" imageName:@"profile" selectedImageName:@"profile_selected"];
+    
+    
+    self.viewControllers = @[homeNav, shelfNav, analysisNav, profileNav];
 }
 
 #pragma mark - 初始化子控制器
--(void)setChild:(UIViewController *)childVC WithTitle:(NSString *)title imageName:(NSString *)imageName selectedImageName:(NSString *)selectedImageName{
+-(UINavigationController *)setChild:(UIViewController *)childVC WithTitle:(NSString *)title imageName:(NSString *)imageName selectedImageName:(NSString *)selectedImageName{
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:childVC];
+    nav.tabBarItem.title = title;
+    nav.tabBarItem.image = [UIImage originImageWithName:imageName];
+    nav.tabBarItem.selectedImage = [UIImage originImageWithName:selectedImageName];
+    return nav;;
+}
+
+#pragma mark - tabbar图标动画函数
+-(void)setAnimationFor:(UIControl *)tabbarBtn
+{
+    for (UIImageView *imageView in tabbarBtn.subviews) {
+        if ([imageView isKindOfClass:NSClassFromString(@"UITabBarSwappableImageView")]) {
+            CAKeyframeAnimation *animation = [CAKeyframeAnimation animationWithKeyPath:@"transform.translation.y"];
+            animation.values = @[@0.0, @(-4.15), @(-7.26), @(-9.34), @(-10.37), @(-9.34), @(-7.26), @(-7.26), @0.0, @2.0, @(-2.9), @(-4.94), @(-6.11), @(-6.42), @(-5.86), @(-4.44), @(-2.16), @0.0];
+            animation.duration = 0.8;
+            animation.calculationMode = kCAAnimationCubic;
+            [imageView.layer addAnimation:animation forKey:NULL];
+        }
+    }
 }
 @end

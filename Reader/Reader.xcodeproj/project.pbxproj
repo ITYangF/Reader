@@ -12,6 +12,7 @@
 		2F25DB6B248F2E7400EBCA5B /* YJShelfViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F25DB6A248F2E7400EBCA5B /* YJShelfViewController.m */; };
 		2F25DB70248F2F7400EBCA5B /* YJAnalysisViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F25DB6F248F2F7400EBCA5B /* YJAnalysisViewController.m */; };
 		2F25DB73248F2F9200EBCA5B /* YJProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F25DB72248F2F9200EBCA5B /* YJProfileViewController.m */; };
+		2FEB91A2248FF2A700510904 /* UIImage+YJImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FEB91A1248FF2A700510904 /* UIImage+YJImage.m */; };
 		2FFF177F248E41D200B7484B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FFF177E248E41D200B7484B /* AppDelegate.m */; };
 		2FFF1788248E41DB00B7484B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2FFF1783248E41DB00B7484B /* Assets.xcassets */; };
 		2FFF1789248E41DB00B7484B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2FFF1784248E41DB00B7484B /* LaunchScreen.storyboard */; };
@@ -29,6 +30,8 @@
 		2F25DB6F248F2F7400EBCA5B /* YJAnalysisViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YJAnalysisViewController.m; sourceTree = "<group>"; };
 		2F25DB71248F2F9200EBCA5B /* YJProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YJProfileViewController.h; sourceTree = "<group>"; };
 		2F25DB72248F2F9200EBCA5B /* YJProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YJProfileViewController.m; sourceTree = "<group>"; };
+		2FEB91A0248FF2A700510904 /* UIImage+YJImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+YJImage.h"; sourceTree = "<group>"; };
+		2FEB91A1248FF2A700510904 /* UIImage+YJImage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+YJImage.m"; sourceTree = "<group>"; };
 		2FFF1760248E3D2400B7484B /* Reader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Reader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2FFF177D248E41D200B7484B /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		2FFF177E248E41D200B7484B /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -105,6 +108,15 @@
 			path = Reader/Classes/Analysis;
 			sourceTree = SOURCE_ROOT;
 		};
+		2FEB919C248FF25400510904 /* Categary */ = {
+			isa = PBXGroup;
+			children = (
+				2FEB91A0248FF2A700510904 /* UIImage+YJImage.h */,
+				2FEB91A1248FF2A700510904 /* UIImage+YJImage.m */,
+			);
+			path = Categary;
+			sourceTree = "<group>";
+		};
 		2FFF1757248E3D2400B7484B = {
 			isa = PBXGroup;
 			children = (
@@ -155,6 +167,7 @@
 		2FFF1781248E41DB00B7484B /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				2FEB919C248FF25400510904 /* Categary */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -246,6 +259,7 @@
 				2F25DB61248F2C1000EBCA5B /* YJTabBarController.m in Sources */,
 				2F25DB73248F2F9200EBCA5B /* YJProfileViewController.m in Sources */,
 				2F25DB6B248F2E7400EBCA5B /* YJShelfViewController.m in Sources */,
+				2FEB91A2248FF2A700510904 /* UIImage+YJImage.m in Sources */,
 				2F25DB70248F2F7400EBCA5B /* YJAnalysisViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
