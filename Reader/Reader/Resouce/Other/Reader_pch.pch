@@ -1,0 +1,24 @@
+//
+//  Reader_pch.pch
+//  Reader
+//
+//  Created by Yang on 2020/6/11.
+//  Copyright © 2020 Yang. All rights reserved.
+//
+
+#ifndef Reader_pch_pch
+#define Reader_pch_pch
+
+#ifdef __OBJC__
+#import "UIView+YJLayout.h"
+#endif
+
+//状态栏高度
+#define YJStatusBarHeight [[UIApplication sharedApplication] statusBarFrame].size.height
+
+#define YJTabBarHeight (YJStatusBarHeight > 20 ? 83 : 49)
+
+#define YJNavBarHeight (YJStatusBarHeight > 20 ? 88 : 64)
+
+#define YJBottomSafeHeight (YJStatusBarHeight > 20 ? 34 : 0)
+#endif /* Reader_pch_pch */
