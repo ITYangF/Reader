@@ -29,14 +29,14 @@ static CGFloat margin = 10.f;
     if (!_collectionView) {
         UICollectionViewFlowLayout * flowLayout = [[UICollectionViewFlowLayout alloc] init];
         
-        CGFloat itemWidth = (self.view.width - 4 * margin) / 3;
+        CGFloat itemWidth = (self.view.frame.size.width - 4 * margin) / 3;
         flowLayout.itemSize = CGSizeMake(itemWidth, itemWidth);
-        flowLayout.minimumLineSpacing = 10;
-        flowLayout.minimumInteritemSpacing = 10;
+        flowLayout.minimumLineSpacing = 5;
+        flowLayout.minimumInteritemSpacing = 5;
         flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
         
         
-        _collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, YJNavBarHeight + 200, self.view.width, self.view.height - 64 -200 - YJTabBarHeight) collectionViewLayout:flowLayout];
+        _collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, YJNavBarHeight + 200, self.view.frame.size.width, self.view.frame.size.height - 64 -200 - YJTabBarHeight) collectionViewLayout:flowLayout];
         _collectionView.contentInset = UIEdgeInsetsMake(margin, margin, margin, margin);
         [_collectionView registerNib:[UINib nibWithNibName:@"YJProfileCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:identifier];
         _collectionView.dataSource = self;
@@ -58,7 +58,7 @@ static CGFloat margin = 10.f;
     [self setNavgationItems];
     
     YJUserMessageView *userMsg = [YJUserMessageView userMessageView];
-    userMsg.frame = CGRectMake(0, YJNavBarHeight, self.view.width, 200);
+    userMsg.frame = CGRectMake(0, YJNavBarHeight, self.view.frame.size.width, 200);
     [self.view addSubview:userMsg];
     self.collectionView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.collectionView];

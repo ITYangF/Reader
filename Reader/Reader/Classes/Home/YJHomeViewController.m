@@ -7,17 +7,28 @@
 //
 
 #import "YJHomeViewController.h"
+#import "YJSearchController.h"
 
-@interface YJHomeViewController ()
+
+@interface YJHomeViewController () 
+@property (nonatomic, strong) YJSearchController *searchVC;
 
 @end
 
 @implementation YJHomeViewController
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
+
+    //导航条搜索框
+    self.searchVC = [[YJSearchController alloc] initSearchControllerWithResultView:self.view];
+    self.navigationItem.titleView = _searchVC.searchBar;
 }
+
+
+
 
 
 @end

@@ -10,8 +10,9 @@
 #define Reader_pch_pch
 
 #ifdef __OBJC__
-#import "UIView+YJLayout.h"
 #endif
+
+#define YJTagIndex 1000
 
 //状态栏高度
 #define YJStatusBarHeight [[UIApplication sharedApplication] statusBarFrame].size.height
