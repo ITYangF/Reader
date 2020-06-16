@@ -22,4 +22,6 @@
 #define YJNavBarHeight (YJStatusBarHeight > 20 ? 88 : 64)
 
 #define YJBottomSafeHeight (YJStatusBarHeight > 20 ? 34 : 0)
+
+#define YJScreenWidth [UIScreen mainScreen].bounds.size.width
 #endif /* Reader_pch_pch */

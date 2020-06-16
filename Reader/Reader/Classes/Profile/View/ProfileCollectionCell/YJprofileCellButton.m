@@ -17,7 +17,6 @@
     CGFloat midY = self.frame.size.height/ 2 ;
     
     self.imageView.center = CGPointMake(midX, midY);
-    
     CGFloat imageY = CGRectGetMaxY(self.imageView.frame);
     self.titleLabel.center = CGPointMake(midX, imageY + 15);
 }

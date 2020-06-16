@@ -68,6 +68,7 @@
 - (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
 {
     _tabbleView.hidden = NO;
+    [self.homeView bringSubviewToFront:_tabbleView];
     return YES;
 }
 
@@ -87,7 +88,6 @@
         }
     }
 }
-
 -(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
 {
     _tabbleView.hidden = YES;

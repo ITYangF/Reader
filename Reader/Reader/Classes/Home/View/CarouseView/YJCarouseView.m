@@ -39,6 +39,7 @@ static const double YJTimerInterval = 2.0;
         _pageControl.currentPage = 0;
         _pageControl.pageIndicatorTintColor = [UIColor whiteColor];
         _pageControl.currentPageIndicatorTintColor = [UIColor redColor];
+        _pageControl.pageIndicatorTintColor = [UIColor yellowColor];
     }
     return _pageControl;
 }
