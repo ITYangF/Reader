@@ -17,16 +17,7 @@
 @implementation YJSearchController
 
 
-/*
- UILabel *label = [[UILabel alloc]init];
- label.text = @"这是一个inputAccessoryView";
- label.textAlignment = NSTextAlignmentCenter;
- label.textColor = [UIColor blackColor];
- 
- label.frame = CGRectMake(0, 0, 0, 30);
- label.backgroundColor = [UIColor redColor];
- self.searchBar.inputAccessoryView = label;
- */
+
 
 - (instancetype)initWithSearchResultsController:(UIViewController *)searchResultsController{
     self = [super initWithSearchResultsController:searchResultsController];
@@ -37,17 +28,29 @@
         //隐藏tableView
         _tabbleView.hidden = YES;
         
-        //不使用遮照视图
+        //不隐藏导航条
         self.hidesNavigationBarDuringPresentation = NO;
         //结果展示视图
         self.searchResultsUpdater = _tabbleView;
-        //不隐藏导航条
+        
+        //不使用遮照视图
         self.dimsBackgroundDuringPresentation = NO;
         
         self.searchBar.placeholder = @"请输入书籍名称";
         
         //显示书籍图片
         self.searchBar.showsBookmarkButton = YES;
+        
+        //键盘提示文字
+        UILabel *label = [[UILabel alloc]init];
+        label.text = @"应有尽有的百科全书";
+        label.textAlignment = NSTextAlignmentCenter;
+        label.textColor = [UIColor blackColor];
+        
+        label.frame = CGRectMake(0, 0, 0, 30);
+        label.backgroundColor = [UIColor whiteColor];
+        self.searchBar.inputAccessoryView = label;
+        
         
         [self.searchBar setImage:[UIImage imageNamed:@"find"] forSearchBarIcon:UISearchBarIconSearch state:UIControlStateNormal];
         self.searchBar.delegate = self;

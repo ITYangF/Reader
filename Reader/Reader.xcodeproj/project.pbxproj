@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		2F0689FD2498776D00C67FFF /* YJResultTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F0689FC2498776D00C67FFF /* YJResultTableView.m */; };
 		2F068A00249885D300C67FFF /* YJSearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F0689FF249885D300C67FFF /* YJSearchController.m */; };
+		2F068A02249894AC00C67FFF /* resultlist.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2F068A01249894AC00C67FFF /* resultlist.plist */; };
+		2F068A052498F31B00C67FFF /* carouseViewList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2F068A042498F31B00C67FFF /* carouseViewList.plist */; };
 		2F25DB61248F2C1000EBCA5B /* YJTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F25DB60248F2C1000EBCA5B /* YJTabBarController.m */; };
 		2F25DB67248F2DC900EBCA5B /* YJHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F25DB66248F2DC900EBCA5B /* YJHomeViewController.m */; };
 		2F25DB6B248F2E7400EBCA5B /* YJShelfViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F25DB6A248F2E7400EBCA5B /* YJShelfViewController.m */; };
@@ -36,6 +38,8 @@
 		2F0689FC2498776D00C67FFF /* YJResultTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YJResultTableView.m; sourceTree = "<group>"; };
 		2F0689FE249885D300C67FFF /* YJSearchController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YJSearchController.h; sourceTree = "<group>"; };
 		2F0689FF249885D300C67FFF /* YJSearchController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YJSearchController.m; sourceTree = "<group>"; };
+		2F068A01249894AC00C67FFF /* resultlist.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = resultlist.plist; sourceTree = "<group>"; };
+		2F068A042498F31B00C67FFF /* carouseViewList.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = carouseViewList.plist; sourceTree = "<group>"; };
 		2F25DB5F248F2C1000EBCA5B /* YJTabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YJTabBarController.h; sourceTree = "<group>"; };
 		2F25DB60248F2C1000EBCA5B /* YJTabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YJTabBarController.m; sourceTree = "<group>"; };
 		2F25DB65248F2DC900EBCA5B /* YJHomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YJHomeViewController.h; sourceTree = "<group>"; };
@@ -85,6 +89,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2F068A03249898DC00C67FFF /* CarouseView */ = {
+			isa = PBXGroup;
+			children = (
+				2F2B03D72494F24D001C3E94 /* YJCarouseView.h */,
+				2F2B03D82494F24D001C3E94 /* YJCarouseView.m */,
+				2F068A042498F31B00C67FFF /* carouseViewList.plist */,
+			);
+			path = CarouseView;
+			sourceTree = "<group>";
+		};
 		2F25DB62248F2D6100EBCA5B /* Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -148,8 +162,7 @@
 			isa = PBXGroup;
 			children = (
 				2FFE3DF82498619D00C28E47 /* SearchBar */,
-				2F2B03D72494F24D001C3E94 /* YJCarouseView.h */,
-				2F2B03D82494F24D001C3E94 /* YJCarouseView.m */,
+				2F068A03249898DC00C67FFF /* CarouseView */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -215,6 +228,7 @@
 				2F0689FF249885D300C67FFF /* YJSearchController.m */,
 				2F0689FB2498776D00C67FFF /* YJResultTableView.h */,
 				2F0689FC2498776D00C67FFF /* YJResultTableView.m */,
+				2F068A01249894AC00C67FFF /* resultlist.plist */,
 			);
 			path = SearchBar;
 			sourceTree = "<group>";
@@ -344,8 +358,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2F068A052498F31B00C67FFF /* carouseViewList.plist in Resources */,
 				2F8C3D06249229B500929946 /* YJProfileCollectionViewCell.xib in Resources */,
 				2F8C3CFD249209F500929946 /* YJUserMessageView.xib in Resources */,
+				2F068A02249894AC00C67FFF /* resultlist.plist in Resources */,
 				2F8C3CF7249200A000929946 /* settingList.plist in Resources */,
 				2FFF1789248E41DB00B7484B /* LaunchScreen.storyboard in Resources */,
 				2F8C3D0824922D6100929946 /* YJProfileCollectionViewList.plist in Resources */,

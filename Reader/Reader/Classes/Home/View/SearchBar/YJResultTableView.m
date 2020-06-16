@@ -16,7 +16,8 @@
 @implementation YJResultTableView
 - (NSArray *)datas {
     if (_datas == nil) {
-        _datas = @[@"西游记", @"钢铁是怎样练成的", @"水浒传", @"红楼梦"];
+        
+        _datas = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"resultlist" ofType:@".plist"]];
     }
     
     return _datas;
@@ -34,9 +35,10 @@
 {
     self = [super initWithFrame:frame style:style];
     if (self) {
-        self.backgroundColor = [UIColor lightGrayColor];
+        self.backgroundColor = [UIColor systemGrayColor];
         self.dataSource = self;
         self.delegate = self;
+        self.tableFooterView = [[UIView alloc] init];
     }
     return self;
 }
@@ -59,7 +61,7 @@
 
 - (void)updateSearchResultsForSearchController:(UISearchController *)searchController {
     
-    NSString *inputStr = searchController.searchBar.text ;
+    NSString *inputStr = searchController.searchBar.text;
     if (self.results.count > 0) {
         [self.results removeAllObjects];
     }
@@ -69,8 +71,11 @@
             
             [self.results addObject:str];
         }
+        
     }
-    
+    if (self.results.count == 0 && searchController.searchBar.text.length != 0) {
+        [self.results addObject:@"没有该书"];
+    }
     [self reloadData];
 }
 @end
