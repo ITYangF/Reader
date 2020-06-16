@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface YJNavgationCollectionView : UICollectionView
--(instancetype)initWithFrame:(CGRect)frame parentView:(UIView *)parentView;
+-(instancetype)initWithFrame:(CGRect)frame parentControlView:(UIViewController *)parentControlView;
 @end
 
 NS_ASSUME_NONNULL_END

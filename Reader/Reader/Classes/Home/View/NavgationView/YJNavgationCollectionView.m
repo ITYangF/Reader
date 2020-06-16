@@ -8,12 +8,12 @@
 
 #import "YJNavgationCollectionView.h"
 #import "YJNavgationCell.h"
-
+#import "YJDetailViewController.h"
 
 
 @interface YJNavgationCollectionView () <UICollectionViewDataSource, UICollectionViewDelegate>
 @property (nonatomic, strong) NSArray *dataArr;
-@property (nonatomic, weak) UIView *parentView;
+@property (nonatomic, weak) UIViewController *parentControlView;
 @end
 
 static NSString * navCell = @"navgationCell";
@@ -26,7 +26,7 @@ static CGFloat margin = 10;
     return _dataArr;;
 }
 
--(instancetype)initWithFrame:(CGRect)frame parentView:(UIView *)parentView{
+-(instancetype)initWithFrame:(CGRect)frame parentControlView:(UIViewController *)parentControlView{
     
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     CGFloat itemW = (YJScreenWidth - 4 * margin) / 3;
@@ -37,7 +37,7 @@ static CGFloat margin = 10;
     
     self = [super initWithFrame:frame collectionViewLayout:layout];
     if (self) {
-        self.parentView = parentView;
+        self.parentControlView = parentControlView;
         self.dataSource = self;
         self.delegate = self;
         self.contentInset = UIEdgeInsetsMake(margin, margin, margin, margin);
@@ -64,7 +64,9 @@ static CGFloat margin = 10;
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"111");
+    NSString * title = _dataArr[indexPath.row][@"title"];
+    YJDetailViewController *datailVC =  [[YJDetailViewController alloc] initWithTitle:title];
+    [self.parentControlView.navigationController pushViewController:datailVC animated:YES];
 }
 
 @end
