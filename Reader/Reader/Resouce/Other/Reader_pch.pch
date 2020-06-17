@@ -24,4 +24,6 @@
 #define YJBottomSafeHeight (YJStatusBarHeight > 20 ? 34 : 0)
 
 #define YJScreenWidth [UIScreen mainScreen].bounds.size.width
+
+#define YJRandomColor [UIColor colorWithRed:arc4random()%255/255.0 green:arc4random()%255/255.0 blue:arc4random()%255/255.0 alpha:1.0f]
 #endif /* Reader_pch_pch */

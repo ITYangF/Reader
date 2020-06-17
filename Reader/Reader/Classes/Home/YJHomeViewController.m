@@ -36,7 +36,6 @@
     //iOS 11 导航栏放置UISearchBar 导航栏高度变高解决办法 44 -> 56
     if (@available(iOS 11.0, *)) {
         [[_searchVC.searchBar.heightAnchor constraintEqualToConstant:44.0] setActive:YES];
-        
     }
     self.searchVC = [[YJSearchController alloc] initSearchControllerWithResultView:self.view];
     self.navigationItem.titleView = _searchVC.searchBar;

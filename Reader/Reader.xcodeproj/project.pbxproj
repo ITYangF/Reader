@@ -30,6 +30,10 @@
 		2F8C3D05249229B500929946 /* YJProfileCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F8C3D03249229B500929946 /* YJProfileCollectionViewCell.m */; };
 		2F8C3D06249229B500929946 /* YJProfileCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F8C3D04249229B500929946 /* YJProfileCollectionViewCell.xib */; };
 		2F8C3D0824922D6100929946 /* YJProfileCollectionViewList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2F8C3D0724922D6100929946 /* YJProfileCollectionViewList.plist */; };
+		2F8E004D249A37E600F40438 /* YJTagNavView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F8E004C249A37E600F40438 /* YJTagNavView.m */; };
+		2FA55D04249A57AE002D9F08 /* YJDisplayTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FA55D03249A57AE002D9F08 /* YJDisplayTableView.m */; };
+		2FA55D07249A5885002D9F08 /* YJDetailScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FA55D06249A5885002D9F08 /* YJDetailScrollView.m */; };
+		2FA55D09249A646F002D9F08 /* displayTableViewList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2FA55D08249A646F002D9F08 /* displayTableViewList.plist */; };
 		2FCD81EA2492351C006F4E42 /* YJprofileCellButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FCD81E92492351C006F4E42 /* YJprofileCellButton.m */; };
 		2FEB91A2248FF2A700510904 /* UIImage+YJImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FEB91A1248FF2A700510904 /* UIImage+YJImage.m */; };
 		2FFF177F248E41D200B7484B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FFF177E248E41D200B7484B /* AppDelegate.m */; };
@@ -78,6 +82,13 @@
 		2F8C3D03249229B500929946 /* YJProfileCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YJProfileCollectionViewCell.m; sourceTree = "<group>"; };
 		2F8C3D04249229B500929946 /* YJProfileCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YJProfileCollectionViewCell.xib; sourceTree = "<group>"; };
 		2F8C3D0724922D6100929946 /* YJProfileCollectionViewList.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = YJProfileCollectionViewList.plist; sourceTree = "<group>"; };
+		2F8E004B249A37E600F40438 /* YJTagNavView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YJTagNavView.h; sourceTree = "<group>"; };
+		2F8E004C249A37E600F40438 /* YJTagNavView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YJTagNavView.m; sourceTree = "<group>"; };
+		2FA55D02249A57AE002D9F08 /* YJDisplayTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YJDisplayTableView.h; sourceTree = "<group>"; };
+		2FA55D03249A57AE002D9F08 /* YJDisplayTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YJDisplayTableView.m; sourceTree = "<group>"; };
+		2FA55D05249A5885002D9F08 /* YJDetailScrollView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YJDetailScrollView.h; sourceTree = "<group>"; };
+		2FA55D06249A5885002D9F08 /* YJDetailScrollView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YJDetailScrollView.m; sourceTree = "<group>"; };
+		2FA55D08249A646F002D9F08 /* displayTableViewList.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = displayTableViewList.plist; sourceTree = "<group>"; };
 		2FCD81E82492351C006F4E42 /* YJprofileCellButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YJprofileCellButton.h; sourceTree = "<group>"; };
 		2FCD81E92492351C006F4E42 /* YJprofileCellButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YJprofileCellButton.m; sourceTree = "<group>"; };
 		2FEB91A0248FF2A700510904 /* UIImage+YJImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+YJImage.h"; sourceTree = "<group>"; };
@@ -130,8 +141,6 @@
 			children = (
 				2F25DB65248F2DC900EBCA5B /* YJHomeViewController.h */,
 				2F25DB66248F2DC900EBCA5B /* YJHomeViewController.m */,
-				2F068A1124993B8000C67FFF /* YJDetailViewController.h */,
-				2F068A1224993B8000C67FFF /* YJDetailViewController.m */,
 				2F6822EF2493CDF70080A4FA /* View */,
 			);
 			path = Home;
@@ -192,6 +201,7 @@
 				2FFE3DF82498619D00C28E47 /* SearchBar */,
 				2F068A03249898DC00C67FFF /* CarouseView */,
 				2F068A0624991E3200C67FFF /* NavgationView */,
+				2F8E004A249A37B200F40438 /* DetailView */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -237,6 +247,22 @@
 				2FCD81E92492351C006F4E42 /* YJprofileCellButton.m */,
 			);
 			path = ProfileCollectionCell;
+			sourceTree = "<group>";
+		};
+		2F8E004A249A37B200F40438 /* DetailView */ = {
+			isa = PBXGroup;
+			children = (
+				2F068A1124993B8000C67FFF /* YJDetailViewController.h */,
+				2F068A1224993B8000C67FFF /* YJDetailViewController.m */,
+				2F8E004B249A37E600F40438 /* YJTagNavView.h */,
+				2F8E004C249A37E600F40438 /* YJTagNavView.m */,
+				2FA55D05249A5885002D9F08 /* YJDetailScrollView.h */,
+				2FA55D06249A5885002D9F08 /* YJDetailScrollView.m */,
+				2FA55D02249A57AE002D9F08 /* YJDisplayTableView.h */,
+				2FA55D03249A57AE002D9F08 /* YJDisplayTableView.m */,
+				2FA55D08249A646F002D9F08 /* displayTableViewList.plist */,
+			);
+			path = DetailView;
 			sourceTree = "<group>";
 		};
 		2FEB919C248FF25400510904 /* Categary */ = {
@@ -387,6 +413,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2FA55D09249A646F002D9F08 /* displayTableViewList.plist in Resources */,
 				2F068A052498F31B00C67FFF /* carouseViewList.plist in Resources */,
 				2F8C3D06249229B500929946 /* YJProfileCollectionViewCell.xib in Resources */,
 				2F8C3CFD249209F500929946 /* YJUserMessageView.xib in Resources */,
@@ -412,6 +439,7 @@
 				2F8C3D05249229B500929946 /* YJProfileCollectionViewCell.m in Sources */,
 				2F8C3CF12491FDF200929946 /* UIBarButtonItem+YJBarButtonItem.m in Sources */,
 				2F068A0924991E6900C67FFF /* YJNavgationCollectionView.m in Sources */,
+				2FA55D07249A5885002D9F08 /* YJDetailScrollView.m in Sources */,
 				2FFF178A248E41DB00B7484B /* main.m in Sources */,
 				2F068A1324993B8100C67FFF /* YJDetailViewController.m in Sources */,
 				2F068A0C24991E9400C67FFF /* YJNavgationCell.m in Sources */,
@@ -419,6 +447,8 @@
 				2F25DB61248F2C1000EBCA5B /* YJTabBarController.m in Sources */,
 				2F2B03D92494F24D001C3E94 /* YJCarouseView.m in Sources */,
 				2F8C3CFB249209E600929946 /* YJUserMessageView.m in Sources */,
+				2F8E004D249A37E600F40438 /* YJTagNavView.m in Sources */,
+				2FA55D04249A57AE002D9F08 /* YJDisplayTableView.m in Sources */,
 				2F25DB73248F2F9200EBCA5B /* YJProfileViewController.m in Sources */,
 				2F25DB6B248F2E7400EBCA5B /* YJShelfViewController.m in Sources */,
 				2F8C3CF52492002A00929946 /* YJSettingTableViewController.m in Sources */,

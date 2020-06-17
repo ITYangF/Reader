@@ -20,9 +20,7 @@
 
 - (NSArray *)dataArr{
     if (!_dataArr) {
-        
         _dataArr = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"settingList" ofType:@".plist"]];
-        
     }
     return _dataArr;;
 }
@@ -30,6 +28,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"设置";
+    self.tableView.tableFooterView = [[UIView alloc] init];
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem btnWithImageName:@"goBack" target:self action:@selector(back:)];
 }
 - (void)viewWillAppear:(BOOL)animated {
@@ -45,7 +44,6 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    
      // 设置系统返回手势的代理为我们刚进入控制器的时候记录的系统的返回手势代理
     self.navigationController.interactivePopGestureRecognizer.delegate = _delegate;
 }

@@ -8,9 +8,15 @@
 
 #import "YJDetailViewController.h"
 #import "UIBarButtonItem+YJBarButtonItem.h"
+#import "YJTagNavView.h"
+#import "YJDetailScrollView.h"
+
+
 @interface YJDetailViewController ()<UIGestureRecognizerDelegate>
 @property (nonatomic, weak) id<UIGestureRecognizerDelegate> delegate;
 @property (nonatomic, strong) NSString *controlName;
+@property (nonatomic, strong) YJTagNavView *tagNav;
+@property (nonatomic, strong) YJDetailScrollView * scrollView;
 @end
 
 @implementation YJDetailViewController
@@ -24,8 +30,21 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
+    //导航条设置
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem btnWithImageName:@"goBack" target:self action:@selector(back:)];
     self.navigationItem.title = _controlName;
+    
+    
+    NSArray *arr = @[@"热读榜", @"新书榜", @"口碑榜", @"影视原著"];
+    self.tagNav = [[YJTagNavView alloc] initWithFrame:CGRectMake(0, YJNavBarHeight, YJScreenWidth, 50) titles:arr];
+    [self.view addSubview:_tagNav];
+    
+    self.scrollView = [[YJDetailScrollView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_tagNav.frame), YJScreenWidth, self.view.frame.size.height - CGRectGetMaxY(_tagNav.frame) - YJTabBarHeight)];
+    _tagNav.delegate = _scrollView;
+    _scrollView.tagView = _tagNav;
+    [self.view addSubview:_scrollView];
+    
+    
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
