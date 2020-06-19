@@ -13,6 +13,7 @@
 #import "YJAnalysisViewController.h"
 #import "YJProfileViewController.h"
 #import "UIImage+YJImage.h"
+#import "YJNaviagtionController.h"
 
 @interface YJTabBarController ()
 
@@ -24,6 +25,7 @@
     [super viewDidLoad];
     [self setTabBarControllerConfiguration];
     self.tabBar.tintColor = [UIColor redColor];
+    self.selectedIndex = 1;
 }
 
 
@@ -55,7 +57,7 @@
 
 #pragma mark - 初始化子控制器
 -(UINavigationController *)setChild:(UIViewController *)childVC WithTitle:(NSString *)title imageName:(NSString *)imageName selectedImageName:(NSString *)selectedImageName{
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:childVC];
+    YJNaviagtionController *nav = [[YJNaviagtionController alloc] initWithRootViewController:childVC];
     nav.tabBarItem.title = title;
     nav.tabBarItem.image = [UIImage originImageWithName:imageName];
     nav.tabBarItem.selectedImage = [UIImage originImageWithName:selectedImageName];

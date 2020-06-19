@@ -105,6 +105,7 @@ static const double YJTimerInterval = 2.0;
 
 -(void)startTimer{
     _timer = [NSTimer scheduledTimerWithTimeInterval:YJTimerInterval target:self selector:@selector(scrollViewTimer) userInfo:nil repeats:YES];
+    [[NSRunLoop mainRunLoop] addTimer:_timer forMode:NSRunLoopCommonModes];
 }
 -(void)stopTimer{
     [_timer invalidate];
