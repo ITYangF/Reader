@@ -9,6 +9,7 @@
 #import "YJShelfViewController.h"
 #import "UIBarButtonItem+YJBarButtonItem.h"
 #import "YJPulsView.h"
+#import "YJNaviagtionController.h"
 
 @interface YJShelfViewController ()
 
@@ -41,12 +42,12 @@
 }
 -(void)pulsBtnDidClicked
 {
-
     NSArray *arr = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"pulsViewList" ofType:@".plist"]];
-    [YJPulsView initWithFrame:CGRectMake(self.view.bounds.size.width - 100, YJNavBarHeight, 150, 200) datas:arr action:^(NSInteger index) {
-        NSLog(@"点击了---%ld",index);
+    [YJPulsView initWithFrame:CGRectMake(self.view.bounds.size.width - 100, YJNavBarHeight, 150, 200) datas:arr action:^(NSString * title) {
+        NSLog(@"点击了---%@",title);
     }];
-
 }
-
+-(void)cancelPopView{
+    [YJPulsView cancelPopView];
+}
 @end

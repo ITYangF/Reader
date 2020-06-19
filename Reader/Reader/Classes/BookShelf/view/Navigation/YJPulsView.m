@@ -48,11 +48,11 @@ UITableView * tableView;
     [self setNeedsDisplay];
 }
 
-+ (void)initWithFrame:(CGRect)frame datas:(NSArray *)datas action:(void (^)(NSInteger))block{
++ (void)initWithFrame:(CGRect)frame datas:(NSArray *)datas action:(void (^)(NSString *))block{
     //添加朦板
     UIWindow *win = [[[UIApplication sharedApplication] windows] firstObject];
     //将朦板
-    bgView = [[YJPulsView alloc] initWithFrame:win.bounds];
+    bgView = [[YJPulsView alloc] initWithFrame:CGRectMake(0, 0, win.bounds.size.width, win.bounds.size.height - YJTabBarHeight)];
     bgView.dataArr = datas;
     bgView.action = block;
     bgView.backgroundColor = [UIColor colorWithHue:0
@@ -72,15 +72,29 @@ UITableView * tableView;
     tableView.rowHeight = 40;
     [win addSubview:tableView];
     
+    [self show];
     
+    
+}
+
++(void)show{
     bgView.alpha = 0;
     [UIView animateWithDuration:0.3 animations:^{
         bgView.alpha = 0.5;
         tableView.transform = CGAffineTransformMakeScale(1.0, 1.0);
     }];
 }
-
-+(void)tapBackgroundClick{
++(void)cancelPopView{
+    if (bgView != nil) {
+        tableView.transform = CGAffineTransformMakeScale(0.000001, 0.0001);
+        [bgView removeFromSuperview];
+        [tableView removeFromSuperview];
+        tableView = nil;
+        bgView = nil;
+    }
+}
++(void)cancelPopViewWithAnimatioin{
+    
     [UIView animateWithDuration:0.3 animations:^{
         tableView.transform = CGAffineTransformMakeScale(0.000001, 0.0001);
     } completion:^(BOOL finished) {
@@ -89,6 +103,10 @@ UITableView * tableView;
         tableView = nil;
         bgView = nil;
     }];
+}
+
++(void)tapBackgroundClick{
+    [YJPulsView cancelPopViewWithAnimatioin];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -112,7 +130,8 @@ static NSString *Identifier = @"pulsCell";
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (self.action) {
-        self.action(indexPath.row);
+        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+        self.action(cell.textLabel.text);
     }
 }
 

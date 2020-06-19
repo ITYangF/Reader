@@ -10,9 +10,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef void(^titleDidClicked)(NSInteger) ;
+typedef void(^titleDidClicked)(NSString *) ;
 @interface YJPulsView : UIView
 + (void)initWithFrame:(CGRect)frame datas:(NSArray *)datas action:(titleDidClicked)block;
++(void)cancelPopView;
 @end
 
 NS_ASSUME_NONNULL_END

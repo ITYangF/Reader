@@ -15,7 +15,7 @@
 #import "UIImage+YJImage.h"
 #import "YJNaviagtionController.h"
 
-@interface YJTabBarController ()
+@interface YJTabBarController () <UITabBarControllerDelegate>
 
 @end
 
@@ -25,7 +25,8 @@
     [super viewDidLoad];
     [self setTabBarControllerConfiguration];
     self.tabBar.tintColor = [UIColor redColor];
-    self.selectedIndex = 1;
+    self.selectedIndex = 0;
+    self.delegate = self;
 }
 
 
@@ -77,4 +78,25 @@
         }
     }
 }
+
+
+- (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(YJNaviagtionController *)viewController{
+    
+    return YES;
+}
+- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(YJNaviagtionController *)viewController{
+    
+    if (viewController.childViewControllers[0].class != [YJHomeViewController class]) {
+        YJNaviagtionController *nav = tabBarController.childViewControllers[0];
+        YJHomeViewController *homeVc = nav.childViewControllers[0];
+        [homeVc cancelResultTableView];
+    }
+    
+    if (viewController.childViewControllers[0].class != [YJShelfViewController class]) {
+        YJNaviagtionController *nav = tabBarController.childViewControllers[1];
+        YJShelfViewController *shelfVc = nav.childViewControllers[0];
+        [shelfVc cancelPopView];
+    }
+}
+
 @end

@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface YJShelfViewController : UIViewController
-
+-(void)cancelPopView;
 @end
 
 NS_ASSUME_NONNULL_END

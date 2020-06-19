@@ -65,6 +65,7 @@
 }
 
 -(void)cancelSearchResultTableView{
+    if (_tabbleView.hidden) return;
     [self.cancelBtn sendActionsForControlEvents:UIControlEventTouchUpInside];
 }
 
