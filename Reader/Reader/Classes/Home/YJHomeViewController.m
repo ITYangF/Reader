@@ -12,7 +12,7 @@
 #import "YJNavgationCollectionView.h"
 
 
-@interface YJHomeViewController () 
+@interface YJHomeViewController () <UITabBarControllerDelegate>
 @property (nonatomic, strong) YJSearchController *searchVC;
 @property (nonatomic, strong) YJCarouseView * carouseView;
 @property (nonatomic, weak) UITextField * searchField;
@@ -31,7 +31,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    
+    self.tabBarController.delegate = self;
     //导航条搜索框
     //iOS 11 导航栏放置UISearchBar 导航栏高度变高解决办法 44 -> 56
     if (@available(iOS 11.0, *)) {
@@ -39,6 +39,7 @@
     }
     self.searchVC = [[YJSearchController alloc] initSearchControllerWithResultView:self.view];
     self.navigationItem.titleView = _searchVC.searchBar;
+
     
     CGRect frame = _searchVC.searchBar.frame;
     _searchVC.searchBar.frame = CGRectMake(0, 0, frame.size.width, 44);
@@ -83,6 +84,11 @@
     _searchField.frame = frame;
 }
 
+- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController{
+    if (self.navigationController != viewController) {
+        [self.searchVC cancelSearchResultTableView];
+    }
+}
 
 
 @end

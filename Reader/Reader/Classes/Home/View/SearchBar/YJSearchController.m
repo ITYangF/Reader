@@ -12,6 +12,7 @@
 @interface YJSearchController () <UISearchBarDelegate>
 @property (nonatomic, strong)  YJResultTableView* tabbleView;
 @property (nonatomic, weak) UIView * homeView;
+@property (nonatomic, strong) UIButton * cancelBtn;
 @end
 
 @implementation YJSearchController
@@ -63,7 +64,9 @@
     return [self initWithSearchResultsController:nil];
 }
 
-
+-(void)cancelSearchResultTableView{
+    [self.cancelBtn sendActionsForControlEvents:UIControlEventTouchUpInside];
+}
 
 - (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
 {
@@ -84,6 +87,7 @@
                 // 在这里转化为UIButton, 设置其属性
                 UIButton *btn = (UIButton*)tempView;
                 [btn setTitle:@"取消" forState:UIControlStateNormal];
+                self.cancelBtn = btn;
             }
         }
     }

@@ -7,6 +7,7 @@
 //
 
 #import "YJResultTableView.h"
+#import "YJSearchController.h"
 
 @interface YJResultTableView () <UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, strong) NSArray *datas;

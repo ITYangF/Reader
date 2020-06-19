@@ -26,6 +26,7 @@
     self.tabBar.tintColor = [UIColor redColor];
 }
 
+
 #pragma mark - 给tabbar图标添加动画
 - (void)viewWillLayoutSubviews
 {

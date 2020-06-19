@@ -12,12 +12,15 @@
 @property (weak, nonatomic) IBOutlet UILabel *label;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 
+
 @end
 
 @implementation YJNavgationCell
 -(void)setDict:(NSDictionary *)dict{
     _dict = dict;
-    _imageView.image = [UIImage imageNamed:dict[@"imageName"]];
+    NSString *imageName = dict[@"imageName"];
+    _imageView.image = [UIImage imageNamed:imageName];
+    _imageView.contentMode = UIViewContentModeScaleAspectFit;
     _label.text = dict[@"title"];
 }
 

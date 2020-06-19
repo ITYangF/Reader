@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface YJSearchController : UISearchController
 -(instancetype)initSearchControllerWithResultView:(UIView *)homeView;
+-(void)cancelSearchResultTableView;
 @end
 
 NS_ASSUME_NONNULL_END
