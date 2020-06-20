@@ -135,7 +135,4 @@ static NSString *Identifier = @"pulsCell";
     }
 }
 
--(void)dealloc{
-    NSLog(@"%s", __func__);
-}
 @end

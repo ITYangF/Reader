@@ -10,6 +10,8 @@
 #import "UIBarButtonItem+YJBarButtonItem.h"
 #import "YJPulsView.h"
 #import "YJNaviagtionController.h"
+#import "YJShelfCollectionView.h"
+#import "YJShelflItem.h"
 
 @interface YJShelfViewController ()
 
@@ -21,6 +23,11 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     [self setUpNavigation];
+    
+    YJShelfCollectionView *collectionView = [[YJShelfCollectionView alloc] initCollectionViewWith:CGRectMake(0, YJNavBarHeight, YJScreenWidth, self.view.frame.size.height - YJNavBarHeight - YJTabBarHeight) dataArr:[self configurationDataArray] didSelected:^(NSString* name) {
+        NSLog(@"%@", name);
+    }];
+    [self.view addSubview:collectionView];
 }
 
 -(void)setUpNavigation{
@@ -33,6 +40,17 @@
     UIBarButtonItem *pulsItem = [UIBarButtonItem btnWithImageName:@"puls" target:self action:@selector(pulsBtnDidClicked)];
     
     self.navigationItem.rightBarButtonItems = @[spaceItem, pulsItem, spaceItem, searchItem];
+}
+
+-(NSArray *)configurationDataArray{
+    NSArray * arr = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"shelfCollectionViewList" ofType:@".plist"]];
+    NSMutableArray *temp = [NSMutableArray array];
+    for (NSDictionary *dict in arr) {
+        YJShelflItem * item = [[YJShelflItem alloc] initWithDict:dict];
+        [temp addObject:item];
+    }
+    arr = temp;
+    return arr;
 }
 
 -(void)searchBtnDidClicked
