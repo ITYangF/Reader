@@ -31,13 +31,4 @@
 {
     [self popViewControllerAnimated:YES];
 }
-
-//-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-//    UITouch *touch = touches.anyObject;
-//    UIWindow *win = [[[UIApplication sharedApplication] windows] firstObject];
-//    CGPoint location = [touch locationInView:win];
-//    
-//    NSLog(@"%@",NSStringFromCGPoint(location));
-//    NSLog(@"%f", YJScreenWidth - location.x);
-//}
 @end

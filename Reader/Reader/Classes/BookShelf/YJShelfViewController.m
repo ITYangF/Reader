@@ -45,7 +45,7 @@
 }
 
 -(void)setUpNavigation{
-    self.title = @"我的书架";
+    self.navigationItem.title = @"我的书架";
     UIBarButtonItem *searchItem = [UIBarButtonItem btnWithImageName:@"search" target:self action:@selector(searchBtnDidClicked)];
     
     UIBarButtonItem *spaceItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:NULL action:NULL];

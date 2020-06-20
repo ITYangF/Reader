@@ -75,13 +75,13 @@
     NSTimeInterval timeInterVal = [self transitionDuration:transitionContext];
     _imageView.frame = [UIScreen mainScreen].bounds;
     
-//    toView.alpha = 0.0;
     __weak typeof(self) weakSelf = self;
+    
+    [self.pushDelegate animationReloadData];
     [UIView animateWithDuration:timeInterVal animations:^{
         weakSelf.imageView.frame = weakSelf.startRect;
     } completion:^(BOOL finished) {
         [weakSelf.imageView removeFromSuperview];
-//        toView.alpha = 1.0;
         [transitionContext completeTransition:YES];
     }];
     

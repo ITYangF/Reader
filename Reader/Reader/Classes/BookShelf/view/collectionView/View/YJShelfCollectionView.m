@@ -90,5 +90,8 @@ static NSString * cellIdentifier = @"shelfCellIdentifier";
     imageView.clipsToBounds = YES;
     return imageView;
 }
+-(void)animationReloadData{
+    [self reloadData];
+}
 
 @end

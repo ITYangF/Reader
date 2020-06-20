@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @required
 -(CGRect)startRect:(NSIndexPath *)indexPath;
 -(UIImageView *)imageView:(NSIndexPath *)indexPath;
+-(void)animationReloadData;
 
 @end
 
