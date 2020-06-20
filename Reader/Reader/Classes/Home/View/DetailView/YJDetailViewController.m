@@ -7,7 +7,7 @@
 //
 
 #import "YJDetailViewController.h"
-#import "UIBarButtonItem+YJBarButtonItem.h"
+
 #import "YJTagNavView.h"
 #import "YJDetailScrollView.h"
 
@@ -31,7 +31,6 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     //导航条设置
-    self.navigationItem.leftBarButtonItem = [UIBarButtonItem btnWithImageName:@"goBack" target:self action:@selector(back:)];
     self.navigationItem.title = _controlName;
     
     
@@ -64,9 +63,6 @@
     self.navigationController.interactivePopGestureRecognizer.delegate = _delegate;
 }
 
-- (void)back:(UIButton *)button {
-    [self.navigationController popViewControllerAnimated:YES];
-}
 #pragma mark - UIGestureRecognizerDelegate
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
         return self.navigationController.childViewControllers.count > 1;

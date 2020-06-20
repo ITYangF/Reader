@@ -11,7 +11,7 @@
 
 @interface YJSearchController () <UISearchBarDelegate>
 @property (nonatomic, strong)  YJResultTableView* tabbleView;
-@property (nonatomic, weak) UIView * homeView;
+@property (nonatomic, strong) UIView * homeView;
 @property (nonatomic, strong) UIButton * cancelBtn;
 @end
 

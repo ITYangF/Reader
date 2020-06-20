@@ -12,20 +12,34 @@
 #import "YJNaviagtionController.h"
 #import "YJShelfCollectionView.h"
 #import "YJShelflItem.h"
+#import "YJReadViewController.h"
+#import "YJReaderAnimation.h"
 
-@interface YJShelfViewController ()
-
+@interface YJShelfViewController ()<UINavigationControllerDelegate>
+@property (nonatomic, strong) NSIndexPath * indexPath;
+@property (nonatomic, strong) YJShelfCollectionView * collectionView;
 @end
 
 @implementation YJShelfViewController
 
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    self.tabBarController.tabBar.hidden = NO;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
+    self.navigationController.delegate = self;
     [self setUpNavigation];
     
-    YJShelfCollectionView *collectionView = [[YJShelfCollectionView alloc] initCollectionViewWith:CGRectMake(0, YJNavBarHeight, YJScreenWidth, self.view.frame.size.height - YJNavBarHeight - YJTabBarHeight) dataArr:[self configurationDataArray] didSelected:^(NSString* name) {
-        NSLog(@"%@", name);
+    __weak typeof(self) weakSelf = self;
+    YJShelfCollectionView *collectionView = [[YJShelfCollectionView alloc] initCollectionViewWith:CGRectMake(0, YJNavBarHeight, YJScreenWidth, self.view.frame.size.height - YJNavBarHeight - YJTabBarHeight) dataArr:[self configurationDataArray] didSelected:^(YJShelfCollectionView * collectionView, NSIndexPath* indexPath) {
+        weakSelf.indexPath = indexPath;
+        weakSelf.collectionView = collectionView;
+        [weakSelf.navigationController pushViewController:[[YJReadViewController alloc] init] animated:YES];
     }];
     [self.view addSubview:collectionView];
 }
@@ -67,5 +81,22 @@
 }
 -(void)cancelPopView{
     [YJPulsView cancelPopView];
+}
+
+
+#pragma mark - UINavigationControllerDelegate
+- (id<UIViewControllerAnimatedTransitioning>)navigationController:(UINavigationController *)navigationController animationControllerForOperation:(UINavigationControllerOperation)operation fromViewController:(UIViewController *)fromVC toViewController:(UIViewController *)toVC
+{
+    
+    YJReaderAnimation * reader = [[YJReaderAnimation alloc] initWithindexPath:_indexPath];
+    reader.pushDelegate = _collectionView;
+    if (operation == UINavigationControllerOperationPush) {
+        reader.isPush = YES;
+        return reader;
+    }else{
+        reader.isPush = NO;
+        return reader;
+        return nil;
+    }
 }
 @end

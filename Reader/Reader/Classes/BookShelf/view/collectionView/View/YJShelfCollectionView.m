@@ -10,6 +10,7 @@
 #import "YJShelfCollectionViewCell.h"
 #import "YJShelflItem.h"
 
+
 CGFloat shelfMargin = 10;
 CGFloat cellSpace = 15;
 CGFloat lineSpacing = 20;
@@ -22,6 +23,7 @@ CGFloat lineSpacing = 20;
 
 
 static NSString * cellIdentifier = @"shelfCellIdentifier";
+
 -(instancetype)initCollectionViewWith:(CGRect)frame dataArr:(nonnull NSArray *)dataArr didSelected:(nonnull cellDidClick)cell{
     
     
@@ -69,9 +71,24 @@ static NSString * cellIdentifier = @"shelfCellIdentifier";
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     if (self.cellBlock) {
-        YJShelflItem * item = _dataArr[indexPath.row];
-        self.cellBlock(item.name);
+        self.cellBlock(self ,indexPath);
     }
+}
+
+
+- (CGRect)startRect:(nonnull NSIndexPath *)indexPath {
+    UICollectionViewCell *cell = [self cellForItemAtIndexPath:indexPath];
+    CGRect startFrame = [self convertRect:cell.frame toCoordinateSpace:[UIApplication sharedApplication].keyWindow];
+    return startFrame;
+}
+
+- (nonnull UIImageView *)imageView:(nonnull NSIndexPath *)indexPath {
+    YJShelflItem *item = _dataArr[indexPath.row];
+    UIImageView *imageView = [[UIImageView alloc] init];
+    imageView.image = [UIImage imageNamed:item.image];
+    imageView.contentMode = UIViewContentModeScaleAspectFill;
+    imageView.clipsToBounds = YES;
+    return imageView;
 }
 
 @end

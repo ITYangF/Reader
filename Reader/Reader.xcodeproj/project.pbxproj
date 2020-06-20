@@ -44,6 +44,8 @@
 		2FF6CE59249DDA0A006EF4FE /* YJShelfCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FF6CE57249DDA0A006EF4FE /* YJShelfCollectionViewCell.m */; };
 		2FF6CE5A249DDA0A006EF4FE /* YJShelfCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FF6CE58249DDA0A006EF4FE /* YJShelfCollectionViewCell.xib */; };
 		2FF6CE60249DE865006EF4FE /* YJShelflItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FF6CE5F249DE865006EF4FE /* YJShelflItem.m */; };
+		2FF6CE65249DEE27006EF4FE /* YJReadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FF6CE64249DEE27006EF4FE /* YJReadViewController.m */; };
+		2FF6CE69249DFAA4006EF4FE /* YJReaderAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FF6CE68249DFAA4006EF4FE /* YJReaderAnimation.m */; };
 		2FFF177F248E41D200B7484B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FFF177E248E41D200B7484B /* AppDelegate.m */; };
 		2FFF1788248E41DB00B7484B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2FFF1783248E41DB00B7484B /* Assets.xcassets */; };
 		2FFF1789248E41DB00B7484B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2FFF1784248E41DB00B7484B /* LaunchScreen.storyboard */; };
@@ -114,6 +116,10 @@
 		2FF6CE58249DDA0A006EF4FE /* YJShelfCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YJShelfCollectionViewCell.xib; sourceTree = "<group>"; };
 		2FF6CE5E249DE865006EF4FE /* YJShelflItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YJShelflItem.h; sourceTree = "<group>"; };
 		2FF6CE5F249DE865006EF4FE /* YJShelflItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YJShelflItem.m; sourceTree = "<group>"; };
+		2FF6CE63249DEE27006EF4FE /* YJReadViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YJReadViewController.h; sourceTree = "<group>"; };
+		2FF6CE64249DEE27006EF4FE /* YJReadViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YJReadViewController.m; sourceTree = "<group>"; };
+		2FF6CE67249DFAA4006EF4FE /* YJReaderAnimation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YJReaderAnimation.h; sourceTree = "<group>"; };
+		2FF6CE68249DFAA4006EF4FE /* YJReaderAnimation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YJReaderAnimation.m; sourceTree = "<group>"; };
 		2FFF1760248E3D2400B7484B /* Reader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Reader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2FFF177D248E41D200B7484B /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		2FFF177E248E41D200B7484B /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -160,13 +166,10 @@
 		2F1A6AAC249DCD92004D2281 /* collectionView */ = {
 			isa = PBXGroup;
 			children = (
-				2F1A6AA9249DCD79004D2281 /* YJShelfCollectionView.h */,
-				2F1A6AAA249DCD79004D2281 /* YJShelfCollectionView.m */,
-				2FF6CE56249DDA0A006EF4FE /* YJShelfCollectionViewCell.h */,
-				2FF6CE57249DDA0A006EF4FE /* YJShelfCollectionViewCell.m */,
-				2FF6CE58249DDA0A006EF4FE /* YJShelfCollectionViewCell.xib */,
-				2FF6CE54249DD285006EF4FE /* shelfCollectionViewList.plist */,
+				2FF6CE66249DF9C5006EF4FE /* Animation */,
+				2FF6CE61249DEDF7006EF4FE /* Controller */,
 				2FF6CE5C249DE82F006EF4FE /* Model */,
+				2FF6CE62249DEDF7006EF4FE /* View */,
 			);
 			path = collectionView;
 			sourceTree = "<group>";
@@ -340,6 +343,37 @@
 				2FF6CE5F249DE865006EF4FE /* YJShelflItem.m */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		2FF6CE61249DEDF7006EF4FE /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				2FF6CE63249DEE27006EF4FE /* YJReadViewController.h */,
+				2FF6CE64249DEE27006EF4FE /* YJReadViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		2FF6CE62249DEDF7006EF4FE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2F1A6AA9249DCD79004D2281 /* YJShelfCollectionView.h */,
+				2F1A6AAA249DCD79004D2281 /* YJShelfCollectionView.m */,
+				2FF6CE56249DDA0A006EF4FE /* YJShelfCollectionViewCell.h */,
+				2FF6CE57249DDA0A006EF4FE /* YJShelfCollectionViewCell.m */,
+				2FF6CE58249DDA0A006EF4FE /* YJShelfCollectionViewCell.xib */,
+				2FF6CE54249DD285006EF4FE /* shelfCollectionViewList.plist */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		2FF6CE66249DF9C5006EF4FE /* Animation */ = {
+			isa = PBXGroup;
+			children = (
+				2FF6CE67249DFAA4006EF4FE /* YJReaderAnimation.h */,
+				2FF6CE68249DFAA4006EF4FE /* YJReaderAnimation.m */,
+			);
+			path = Animation;
 			sourceTree = "<group>";
 		};
 		2FFE3DF82498619D00C28E47 /* SearchBar */ = {
@@ -517,6 +551,7 @@
 				2F068A0C24991E9400C67FFF /* YJNavgationCell.m in Sources */,
 				2FFF177F248E41D200B7484B /* AppDelegate.m in Sources */,
 				2F493C82249CCC170018963F /* YJNaviagtionController.m in Sources */,
+				2FF6CE69249DFAA4006EF4FE /* YJReaderAnimation.m in Sources */,
 				2F25DB61248F2C1000EBCA5B /* YJTabBarController.m in Sources */,
 				2F2B03D92494F24D001C3E94 /* YJCarouseView.m in Sources */,
 				2F8C3CFB249209E600929946 /* YJUserMessageView.m in Sources */,
@@ -530,6 +565,7 @@
 				2F493C7A249CBACE0018963F /* YJPulsView.m in Sources */,
 				2F25DB70248F2F7400EBCA5B /* YJAnalysisViewController.m in Sources */,
 				2F0689FD2498776D00C67FFF /* YJResultTableView.m in Sources */,
+				2FF6CE65249DEE27006EF4FE /* YJReadViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
