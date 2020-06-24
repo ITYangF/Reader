@@ -22,24 +22,25 @@ static const double YJTimerInterval = 2.0;
 @implementation YJCarouseView
 -(UIScrollView *)scrollView{
     if (!_scrollView) {
-        _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
-        _scrollView.contentSize = CGSizeMake(self.frame.size.width * _imageArr.count, self.frame.size.height);
+        _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, YJScreenWidth, self.frame.size.height)];
+        _scrollView.contentSize = CGSizeMake(YJScreenWidth * _imageArr.count, self.frame.size.height);
         _scrollView.bounces = NO;
         _scrollView.pagingEnabled = YES;
         _scrollView.delegate = self;
         _scrollView.showsHorizontalScrollIndicator = NO;
-        _scrollView.contentOffset = CGPointMake(self.frame.size.width, 0);
+        _scrollView.contentOffset = CGPointMake(YJScreenWidth, 0);
     }
     return _scrollView;
 }
 
 -(UIPageControl *)pageControl{
     if (!_pageControl) {
-        _pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(0, self.frame.size.height - 30, self.frame.size.width, 30)];
+        _pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(0, self.frame.size.height - 30, YJScreenWidth, 30)];
         _pageControl.currentPage = 0;
         _pageControl.pageIndicatorTintColor = [UIColor whiteColor];
         _pageControl.currentPageIndicatorTintColor = [UIColor redColor];
         _pageControl.pageIndicatorTintColor = [UIColor yellowColor];
+        _pageControl.enabled = NO;
     }
     return _pageControl;
 }
@@ -75,7 +76,7 @@ static const double YJTimerInterval = 2.0;
 -(void)signleImage{
     self.pageControl.numberOfPages = 1;
     UIImageView *imageView = [self creatImageView];
-    imageView.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
+    imageView.frame = CGRectMake(0, 0, YJScreenWidth, self.frame.size.height);
     imageView.image = [UIImage imageNamed:_imageArr[0]];
     [self addSubview:imageView];
   
@@ -96,7 +97,7 @@ static const double YJTimerInterval = 2.0;
     
     for (int i = 0; i < _imageArr.count; i++) {
         UIImageView *imageView = [self creatImageView];
-        imageView.frame = CGRectMake(self.frame.size.width * i, 0, self.frame.size.width, self.frame.size.height);
+        imageView.frame = CGRectMake(YJScreenWidth * i, 0, YJScreenWidth, self.frame.size.height);
         imageView.image = [UIImage imageNamed:_imageArr[i]];
         [_scrollView addSubview:imageView];
     }
@@ -115,22 +116,22 @@ static const double YJTimerInterval = 2.0;
 -(void)scrollViewTimer
 {
     float offset_X = _scrollView.contentOffset.x;
-    offset_X += self.frame.size.width;
+    offset_X += YJScreenWidth;
     
-    if (offset_X == self.frame.size.width * (_imageArr.count - 1)) {
+    if (offset_X == YJScreenWidth * (_imageArr.count - 1)) {
         _pageControl.currentPage = 0;
     }else if(offset_X == 0){
         _pageControl.currentPage = _imageArr.count - 3;
     }else{
-        _pageControl.currentPage = offset_X/self.frame.size.width - 1;
+        _pageControl.currentPage = offset_X/YJScreenWidth - 1;
     }
     
     CGPoint resultPoint = CGPointMake(offset_X, 0);
     
-    if (offset_X > self.frame.size.width * (_imageArr.count - 1)){
+    if (offset_X > YJScreenWidth * (_imageArr.count - 1)){
         _pageControl.currentPage = 1;
-        _scrollView.contentOffset = CGPointMake(self.frame.size.width, 0);
-        _scrollView.contentOffset = CGPointMake(self.frame.size.width * 2, 0);
+        _scrollView.contentOffset = CGPointMake(YJScreenWidth, 0);
+        _scrollView.contentOffset = CGPointMake(YJScreenWidth * 2, 0);
     }else{
         [_scrollView setContentOffset:resultPoint animated:YES];
     }
@@ -140,16 +141,16 @@ static const double YJTimerInterval = 2.0;
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
-    int pageImageView = scrollView.contentOffset.x/self.frame.size.width;
+    int pageImageView = scrollView.contentOffset.x/YJScreenWidth;
     if (pageImageView == self.imageArr.count - 1) {
         pageImageView = 0;
-        CGPoint resultPoint = CGPointMake(self.frame.size.width, 0);
+        CGPoint resultPoint = CGPointMake(YJScreenWidth, 0);
         
         [_scrollView setContentOffset:resultPoint animated:NO];
         _pageControl.currentPage = pageImageView;
     }else if(pageImageView == 0){
         pageImageView = (int)(_imageArr.count - 2);
-        CGPoint resultPoint = CGPointMake(self.frame.size.width * pageImageView, 0);
+        CGPoint resultPoint = CGPointMake(YJScreenWidth * pageImageView, 0);
         [_scrollView setContentOffset:resultPoint animated:NO];
         _pageControl.currentPage = pageImageView - 1;
     }else{

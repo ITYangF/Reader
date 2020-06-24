@@ -23,9 +23,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    //添加子控制器
     [self setTabBarControllerConfiguration];
+    
+    //文字颜色
     self.tabBar.tintColor = [UIColor redColor];
-    self.selectedIndex = 0;
+    
     self.delegate = self;
 }
 
@@ -34,6 +38,8 @@
 - (void)viewWillLayoutSubviews
 {
     [super viewWillLayoutSubviews];
+    
+    
     for (UIView* subView in self.tabBar.subviews) {
         if ([subView isKindOfClass:NSClassFromString(@"UITabBarButton")]) {
             UIControl *tabbarBtn = (UIControl *)subView;
@@ -72,7 +78,7 @@
         if ([imageView isKindOfClass:NSClassFromString(@"UITabBarSwappableImageView")]) {
             CAKeyframeAnimation *animation = [CAKeyframeAnimation animationWithKeyPath:@"transform.translation.y"];
             animation.values = @[@0.0, @(-4.15), @(-7.26), @(-9.34), @(-10.37), @(-9.34), @(-7.26), @(-7.26), @0.0, @2.0, @(-2.9), @(-4.94), @(-6.11), @(-6.42), @(-5.86), @(-4.44), @(-2.16), @0.0];
-            animation.duration = 0.8;
+            animation.duration = 0.5;
             animation.calculationMode = kCAAnimationCubic;
             [imageView.layer addAnimation:animation forKey:NULL];
         }
@@ -80,18 +86,7 @@
 }
 
 
-- (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(YJNaviagtionController *)viewController{
-    
-    return YES;
-}
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(YJNaviagtionController *)viewController{
-    
-    if (viewController.childViewControllers[0].class != [YJHomeViewController class]) {
-        YJNaviagtionController *nav = tabBarController.childViewControllers[0];
-        YJHomeViewController *homeVc = nav.childViewControllers[0];
-        [homeVc cancelResultTableView];
-    }
-    
     if (viewController.childViewControllers[0].class != [YJShelfViewController class]) {
         YJNaviagtionController *nav = tabBarController.childViewControllers[1];
         YJShelfViewController *shelfVc = nav.childViewControllers[0];

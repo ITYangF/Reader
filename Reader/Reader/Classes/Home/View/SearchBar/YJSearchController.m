@@ -8,24 +8,22 @@
 
 #import "YJSearchController.h"
 #import "YJResultTableView.h"
+#import "YJHomeViewController.h"
 
 @interface YJSearchController () <UISearchBarDelegate>
 @property (nonatomic, strong)  YJResultTableView* tabbleView;
-@property (nonatomic, strong) UIView * homeView;
+@property (nonatomic, strong) YJHomeViewController * homeVC;
 @property (nonatomic, strong) UIButton * cancelBtn;
 @end
 
 @implementation YJSearchController
-
-
-
 
 - (instancetype)initWithSearchResultsController:(UIViewController *)searchResultsController{
     self = [super initWithSearchResultsController:searchResultsController];
     if (self) {
         //展示结果的tableview
         self.tabbleView = [[YJResultTableView alloc] initWithFrame:CGRectMake(0, YJNavBarHeight, self.view.frame.size.width, self.view.frame.size.height - YJNavBarHeight) style:UITableViewStylePlain];
-        [self.homeView addSubview:_tabbleView];
+        [self.homeVC.view addSubview:_tabbleView];
         //隐藏tableView
         _tabbleView.hidden = YES;
         
@@ -59,25 +57,23 @@
     return self;
 }
 
--(instancetype)initSearchControllerWithResultView:(UIView *)homeView{
-    self.homeView = homeView;
+
+-(instancetype)initSearchControllerWithViewController:(YJHomeViewController *)homeVC{
+    self.homeVC = homeVC;
     return [self initWithSearchResultsController:nil];
 }
 
--(void)cancelSearchResultTableView{
-    if (_tabbleView.hidden) return;
-    [self.cancelBtn sendActionsForControlEvents:UIControlEventTouchUpInside];
-}
-
-- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
-{
+#pragma mark - UISearchBarDelegate
+- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar{
+    self.homeVC.tabBarController.tabBar.hidden = YES;
     _tabbleView.hidden = NO;
-    [self.homeView bringSubviewToFront:_tabbleView];
+    [self.homeVC.view bringSubviewToFront:_tabbleView];
     return YES;
 }
 
-- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
-{
+
+#pragma mark - 更改默认系统文体
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar{
     // 由于其子控件是懒加载模式, 所以找之前先将其显示
     [searchBar setShowsCancelButton:YES animated:YES];
     for (UIView *subview in searchBar.subviews) {
@@ -93,9 +89,10 @@
         }
     }
 }
--(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
-{
+
+-(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
     _tabbleView.hidden = YES;
+    self.homeVC.tabBarController.tabBar.hidden = NO;
 }
 
 @end

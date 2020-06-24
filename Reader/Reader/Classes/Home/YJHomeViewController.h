@@ -11,7 +11,6 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface YJHomeViewController : UIViewController
--(void)cancelResultTableView;
 @end
 
 NS_ASSUME_NONNULL_END

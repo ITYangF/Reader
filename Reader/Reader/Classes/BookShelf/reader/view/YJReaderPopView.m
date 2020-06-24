@@ -73,7 +73,7 @@ CGFloat popViewWidth = 102;
 {
     self = [super initWithFrame:frame];
     if (self) {
-        YJPreNextView * preNextView = [[YJPreNextView alloc] initWithFrame:CGRectMake(0, 0, YJScreenWidth, 40)];
+        YJPreNextView * preNextView = [[YJPreNextView alloc] initWithFrame:CGRectMake(0, 0, YJScreenWidth, popViewWidth)];
         [self addSubview:preNextView];
     }
     return self;

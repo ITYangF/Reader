@@ -17,10 +17,8 @@
 @implementation YJResultTableView
 - (NSArray *)datas {
     if (_datas == nil) {
-        
         _datas = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"resultlist" ofType:@".plist"]];
     }
-    
     return _datas;
 }
 

@@ -36,7 +36,7 @@
 }
 
 - (void)hasBtnDidClick:(NSInteger)index {
-    self.contentOffset = CGPointMake(YJScreenWidth * index, 0);
+    [self setContentOffset:CGPointMake(YJScreenWidth * index, 0) animated:NO];
 }
 
 
