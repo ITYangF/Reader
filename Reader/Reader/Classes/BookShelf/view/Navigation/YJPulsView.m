@@ -73,8 +73,6 @@ UITableView * tableView;
     [win addSubview:tableView];
     
     [self show];
-    
-    
 }
 
 +(void)show{

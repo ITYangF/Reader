@@ -18,4 +18,18 @@
     UIBarButtonItem *btnItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
     return btnItem;
 }
+
++(UIBarButtonItem *)btnWithTitle:(NSString *)title target:(id)target action:(SEL)action{
+    UIButton *btn = [[UIButton alloc] init];
+    
+    [btn setTitle:title forState:UIControlStateNormal];
+    [btn setTitleColor:UIColorFromHex(0xd75f53) forState:UIControlStateNormal];
+    btn.layer.borderWidth = 1;
+    btn.layer.borderColor = UIColorFromHex(0xd75f53).CGColor;
+    btn.layer.cornerRadius = 10;
+    [btn.layer masksToBounds];
+    [btn addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *btnItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
+    return btnItem;
+}
 @end

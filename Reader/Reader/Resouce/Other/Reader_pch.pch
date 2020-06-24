@@ -14,10 +14,15 @@
 
 #define YJTagIndex 1000
 
+
+
 //状态栏高度
 #define YJStatusBarHeight [[UIApplication sharedApplication] statusBarFrame].size.height
 
+
 #define YJTabBarHeight (YJStatusBarHeight > 20 ? 83 : 49)
+
+#define YJIsIphoneX (YJStatusBarHeight > 20 ? YES : NO)
 
 #define YJNavBarHeight (YJStatusBarHeight > 20 ? 88 : 64)
 
@@ -25,5 +30,11 @@
 
 #define YJScreenWidth [UIScreen mainScreen].bounds.size.width
 
+#define YJScreenHeight [UIScreen mainScreen].bounds.size.height
+
 #define YJRandomColor [UIColor colorWithRed:arc4random()%255/255.0 green:arc4random()%255/255.0 blue:arc4random()%255/255.0 alpha:1.0f]
+
+
+
+#define UIColorFromHex(s) [UIColor colorWithRed:(((s & 0xFF0000) >> 16))/255.0 green:(((s & 0xFF00) >> 8))/255.0 blue:((s & 0xFF))/255.0  alpha:1.0] 
 #endif /* Reader_pch_pch */

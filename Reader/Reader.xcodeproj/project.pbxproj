@@ -26,6 +26,8 @@
 		2F493C7A249CBACE0018963F /* YJPulsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F493C79249CBACE0018963F /* YJPulsView.m */; };
 		2F493C7C249CBEEF0018963F /* pulsViewList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2F493C7B249CBEEF0018963F /* pulsViewList.plist */; };
 		2F493C82249CCC170018963F /* YJNaviagtionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F493C81249CCC170018963F /* YJNaviagtionController.m */; };
+		2F8634D924A3B7D700758D03 /* YJReaderPopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F8634D824A3B7D700758D03 /* YJReaderPopView.m */; };
+		2F8634DC24A3C3CC00758D03 /* YJPreNextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F8634DB24A3C3CC00758D03 /* YJPreNextView.m */; };
 		2F8C3CF12491FDF200929946 /* UIBarButtonItem+YJBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F8C3CF02491FDF200929946 /* UIBarButtonItem+YJBarButtonItem.m */; };
 		2F8C3CF52492002A00929946 /* YJSettingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F8C3CF42492002A00929946 /* YJSettingTableViewController.m */; };
 		2F8C3CF7249200A000929946 /* settingList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2F8C3CF6249200A000929946 /* settingList.plist */; };
@@ -86,6 +88,10 @@
 		2F493C7B249CBEEF0018963F /* pulsViewList.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = pulsViewList.plist; sourceTree = "<group>"; };
 		2F493C80249CCC170018963F /* YJNaviagtionController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YJNaviagtionController.h; sourceTree = "<group>"; };
 		2F493C81249CCC170018963F /* YJNaviagtionController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YJNaviagtionController.m; sourceTree = "<group>"; };
+		2F8634D724A3B7D700758D03 /* YJReaderPopView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YJReaderPopView.h; sourceTree = "<group>"; };
+		2F8634D824A3B7D700758D03 /* YJReaderPopView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YJReaderPopView.m; sourceTree = "<group>"; };
+		2F8634DA24A3C3CC00758D03 /* YJPreNextView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YJPreNextView.h; sourceTree = "<group>"; };
+		2F8634DB24A3C3CC00758D03 /* YJPreNextView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YJPreNextView.m; sourceTree = "<group>"; };
 		2F8C3CEF2491FDF200929946 /* UIBarButtonItem+YJBarButtonItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+YJBarButtonItem.h"; sourceTree = "<group>"; };
 		2F8C3CF02491FDF200929946 /* UIBarButtonItem+YJBarButtonItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+YJBarButtonItem.m"; sourceTree = "<group>"; };
 		2F8C3CF32492002A00929946 /* YJSettingTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YJSettingTableViewController.h; sourceTree = "<group>"; };
@@ -166,10 +172,13 @@
 		2F1A6AAC249DCD92004D2281 /* collectionView */ = {
 			isa = PBXGroup;
 			children = (
-				2FF6CE66249DF9C5006EF4FE /* Animation */,
-				2FF6CE61249DEDF7006EF4FE /* Controller */,
 				2FF6CE5C249DE82F006EF4FE /* Model */,
-				2FF6CE62249DEDF7006EF4FE /* View */,
+				2F1A6AA9249DCD79004D2281 /* YJShelfCollectionView.h */,
+				2F1A6AAA249DCD79004D2281 /* YJShelfCollectionView.m */,
+				2FF6CE56249DDA0A006EF4FE /* YJShelfCollectionViewCell.h */,
+				2FF6CE57249DDA0A006EF4FE /* YJShelfCollectionViewCell.m */,
+				2FF6CE58249DDA0A006EF4FE /* YJShelfCollectionViewCell.xib */,
+				2FF6CE54249DD285006EF4FE /* shelfCollectionViewList.plist */,
 			);
 			path = collectionView;
 			sourceTree = "<group>";
@@ -209,6 +218,8 @@
 			children = (
 				2F25DB69248F2E7400EBCA5B /* YJShelfViewController.h */,
 				2F25DB6A248F2E7400EBCA5B /* YJShelfViewController.m */,
+				2F8634D524A3B71B00758D03 /* reader */,
+				2FF6CE66249DF9C5006EF4FE /* Animation */,
 				2F493C73249CB23E0018963F /* view */,
 			);
 			path = BookShelf;
@@ -264,6 +275,26 @@
 				2F8E004A249A37B200F40438 /* DetailView */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		2F8634D524A3B71B00758D03 /* reader */ = {
+			isa = PBXGroup;
+			children = (
+				2FF6CE61249DEDF7006EF4FE /* Controller */,
+				2F8634D624A3B7AF00758D03 /* view */,
+			);
+			path = reader;
+			sourceTree = "<group>";
+		};
+		2F8634D624A3B7AF00758D03 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				2F8634D724A3B7D700758D03 /* YJReaderPopView.h */,
+				2F8634D824A3B7D700758D03 /* YJReaderPopView.m */,
+				2F8634DA24A3C3CC00758D03 /* YJPreNextView.h */,
+				2F8634DB24A3C3CC00758D03 /* YJPreNextView.m */,
+			);
+			path = view;
 			sourceTree = "<group>";
 		};
 		2F8C3CF22492001000929946 /* Setting */ = {
@@ -352,19 +383,6 @@
 				2FF6CE64249DEE27006EF4FE /* YJReadViewController.m */,
 			);
 			path = Controller;
-			sourceTree = "<group>";
-		};
-		2FF6CE62249DEDF7006EF4FE /* View */ = {
-			isa = PBXGroup;
-			children = (
-				2F1A6AA9249DCD79004D2281 /* YJShelfCollectionView.h */,
-				2F1A6AAA249DCD79004D2281 /* YJShelfCollectionView.m */,
-				2FF6CE56249DDA0A006EF4FE /* YJShelfCollectionViewCell.h */,
-				2FF6CE57249DDA0A006EF4FE /* YJShelfCollectionViewCell.m */,
-				2FF6CE58249DDA0A006EF4FE /* YJShelfCollectionViewCell.xib */,
-				2FF6CE54249DD285006EF4FE /* shelfCollectionViewList.plist */,
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		2FF6CE66249DF9C5006EF4FE /* Animation */ = {
@@ -543,10 +561,12 @@
 				2F8C3CF12491FDF200929946 /* UIBarButtonItem+YJBarButtonItem.m in Sources */,
 				2FF6CE59249DDA0A006EF4FE /* YJShelfCollectionViewCell.m in Sources */,
 				2F068A0924991E6900C67FFF /* YJNavgationCollectionView.m in Sources */,
+				2F8634DC24A3C3CC00758D03 /* YJPreNextView.m in Sources */,
 				2FA55D07249A5885002D9F08 /* YJDetailScrollView.m in Sources */,
 				2FF6CE60249DE865006EF4FE /* YJShelflItem.m in Sources */,
 				2FFF178A248E41DB00B7484B /* main.m in Sources */,
 				2F068A1324993B8100C67FFF /* YJDetailViewController.m in Sources */,
+				2F8634D924A3B7D700758D03 /* YJReaderPopView.m in Sources */,
 				2F1A6AAB249DCD79004D2281 /* YJShelfCollectionView.m in Sources */,
 				2F068A0C24991E9400C67FFF /* YJNavgationCell.m in Sources */,
 				2FFF177F248E41D200B7484B /* AppDelegate.m in Sources */,
