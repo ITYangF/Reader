@@ -1,5 +1,5 @@
 //
-//  YJLeftTopScrollView.h
+//  YJListTableView.h
 //  Reader
 //
 //  Created by Yang on 2020/6/26.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface YJLeftTopScrollView : UIScrollView
+@interface YJListTableView : UITableView
 
 @end
 

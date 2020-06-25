@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "YJLeftTopView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface YJLeftContentScrollView : UIScrollView
+@interface YJLeftContentScrollView : UIScrollView <YJLeftTopViewDelegate>
 
 @end
 

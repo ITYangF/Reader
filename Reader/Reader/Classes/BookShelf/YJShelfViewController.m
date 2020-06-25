@@ -22,7 +22,6 @@
 
 @implementation YJShelfViewController
 
-
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];

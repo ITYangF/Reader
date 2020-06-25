@@ -50,8 +50,9 @@
 		2FF3C46724A4C1300065F70F /* YJMoreButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FF3C46624A4C1300065F70F /* YJMoreButton.xib */; };
 		2FF3C46A24A4F42C0065F70F /* YJLeftViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FF3C46924A4F42C0065F70F /* YJLeftViewController.m */; };
 		2FF3C46D24A4F4380065F70F /* YJMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FF3C46C24A4F4380065F70F /* YJMainViewController.m */; };
-		2FF3C47324A5057B0065F70F /* YJLeftTopScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FF3C47224A5057B0065F70F /* YJLeftTopScrollView.m */; };
+		2FF3C47324A5057B0065F70F /* YJLeftTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FF3C47224A5057B0065F70F /* YJLeftTopView.m */; };
 		2FF3C47624A505F90065F70F /* YJLeftContentScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FF3C47524A505F90065F70F /* YJLeftContentScrollView.m */; };
+		2FF3C48324A519E10065F70F /* YJListTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FF3C48224A519E10065F70F /* YJListTableView.m */; };
 		2FF6CE55249DD285006EF4FE /* shelfCollectionViewList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2FF6CE54249DD285006EF4FE /* shelfCollectionViewList.plist */; };
 		2FF6CE59249DDA0A006EF4FE /* YJShelfCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FF6CE57249DDA0A006EF4FE /* YJShelfCollectionViewCell.m */; };
 		2FF6CE5A249DDA0A006EF4FE /* YJShelfCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FF6CE58249DDA0A006EF4FE /* YJShelfCollectionViewCell.xib */; };
@@ -144,10 +145,12 @@
 		2FF3C46924A4F42C0065F70F /* YJLeftViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YJLeftViewController.m; sourceTree = "<group>"; };
 		2FF3C46B24A4F4380065F70F /* YJMainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YJMainViewController.h; sourceTree = "<group>"; };
 		2FF3C46C24A4F4380065F70F /* YJMainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YJMainViewController.m; sourceTree = "<group>"; };
-		2FF3C47124A5057B0065F70F /* YJLeftTopScrollView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YJLeftTopScrollView.h; sourceTree = "<group>"; };
-		2FF3C47224A5057B0065F70F /* YJLeftTopScrollView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YJLeftTopScrollView.m; sourceTree = "<group>"; };
+		2FF3C47124A5057B0065F70F /* YJLeftTopView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YJLeftTopView.h; sourceTree = "<group>"; };
+		2FF3C47224A5057B0065F70F /* YJLeftTopView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YJLeftTopView.m; sourceTree = "<group>"; };
 		2FF3C47424A505F90065F70F /* YJLeftContentScrollView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YJLeftContentScrollView.h; sourceTree = "<group>"; };
 		2FF3C47524A505F90065F70F /* YJLeftContentScrollView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YJLeftContentScrollView.m; sourceTree = "<group>"; };
+		2FF3C48124A519E10065F70F /* YJListTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YJListTableView.h; sourceTree = "<group>"; };
+		2FF3C48224A519E10065F70F /* YJListTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YJListTableView.m; sourceTree = "<group>"; };
 		2FF6CE54249DD285006EF4FE /* shelfCollectionViewList.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = shelfCollectionViewList.plist; sourceTree = "<group>"; };
 		2FF6CE56249DDA0A006EF4FE /* YJShelfCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YJShelfCollectionViewCell.h; sourceTree = "<group>"; };
 		2FF6CE57249DDA0A006EF4FE /* YJShelfCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YJShelfCollectionViewCell.m; sourceTree = "<group>"; };
@@ -441,8 +444,8 @@
 		2FF3C46F24A505620065F70F /* scrollView */ = {
 			isa = PBXGroup;
 			children = (
-				2FF3C47124A5057B0065F70F /* YJLeftTopScrollView.h */,
-				2FF3C47224A5057B0065F70F /* YJLeftTopScrollView.m */,
+				2FF3C47124A5057B0065F70F /* YJLeftTopView.h */,
+				2FF3C47224A5057B0065F70F /* YJLeftTopView.m */,
 				2FF3C47424A505F90065F70F /* YJLeftContentScrollView.h */,
 				2FF3C47524A505F90065F70F /* YJLeftContentScrollView.m */,
 			);
@@ -452,6 +455,8 @@
 		2FF3C47024A505620065F70F /* tableView */ = {
 			isa = PBXGroup;
 			children = (
+				2FF3C48124A519E10065F70F /* YJListTableView.h */,
+				2FF3C48224A519E10065F70F /* YJListTableView.m */,
 			);
 			path = tableView;
 			sourceTree = "<group>";
@@ -715,7 +720,7 @@
 				2FCD81EA2492351C006F4E42 /* YJprofileCellButton.m in Sources */,
 				2F25DB67248F2DC900EBCA5B /* YJHomeViewController.m in Sources */,
 				2F8C3D05249229B500929946 /* YJProfileCollectionViewCell.m in Sources */,
-				2FF3C47324A5057B0065F70F /* YJLeftTopScrollView.m in Sources */,
+				2FF3C47324A5057B0065F70F /* YJLeftTopView.m in Sources */,
 				2FF3C46324A4C1120065F70F /* YJMoreButton.m in Sources */,
 				2FF3C45124A45A400065F70F /* YJReaderMorePopView.m in Sources */,
 				2F8C3CF12491FDF200929946 /* UIBarButtonItem+YJBarButtonItem.m in Sources */,
@@ -752,6 +757,7 @@
 				2F25DB70248F2F7400EBCA5B /* YJAnalysisViewController.m in Sources */,
 				2F0689FD2498776D00C67FFF /* YJResultTableView.m in Sources */,
 				2FF6CE65249DEE27006EF4FE /* YJReadViewController.m in Sources */,
+				2FF3C48324A519E10065F70F /* YJListTableView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

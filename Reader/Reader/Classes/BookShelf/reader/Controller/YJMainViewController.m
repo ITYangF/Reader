@@ -18,25 +18,24 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [super viewDidLoad];
-    _statusBarHidden = YES;
     self.view.backgroundColor = [UIColor whiteColor];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hiddenNavBar) name:Notification_removePopView object:nil];
+    _statusBarHidden = YES;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(isHiddenStatusBar) name:Notification_removePopView object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(muluBtnClick) name:Notification_showLeftVc object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    [UIApplication sharedApplication].statusBarHidden = YES;
+    [UIApplication sharedApplication].statusBarStyle = UIBarStyleBlack;
     [self hiddenNavBarAndTabbar];
-}
-- (void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
+    [UIApplication sharedApplication].statusBarHidden = NO;
+    [UIApplication sharedApplication].statusBarStyle = UIBarStyleDefault;
     [self hiddenNavBarAndTabbar];
-    self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
 }
 
 -(void)hiddenNavBarAndTabbar{
@@ -44,18 +43,14 @@
     self.tabBarController.tabBar.hidden = YES;
 }
 
+///实现/隐藏状态栏
 -(void)isHiddenStatusBar{
     _statusBarHidden = !_statusBarHidden;
-    [self setNeedsStatusBarAppearanceUpdate];
+    [UIApplication sharedApplication].statusBarHidden = _statusBarHidden;
     [self.navigationController setNavigationBarHidden:_statusBarHidden animated:YES];
 }
 
--(void)hiddenNavBar{
-    [self isHiddenStatusBar];
-}
-
 -(void)muluBtnClick{
-    [self hiddenNavBarAndTabbar];
     [YJReaderEasyPopView removeEasyPopViewWithAnimation:NO];
 }
 

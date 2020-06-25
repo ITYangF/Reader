@@ -15,6 +15,7 @@
 #define leftSlideWidth (YJScreenWidth - 50)
 
 @interface YJReadViewController ()
+
 @property (nonatomic, strong) YJMainViewController * mainVC;
 @property (nonatomic, strong) YJLeftViewController * leftVC;
 @property (nonatomic, strong) UIView *coverView;
@@ -22,8 +23,9 @@
 @end
 
 @implementation YJReadViewController
-- (instancetype)init
-{
+
+///构造方法
+- (instancetype)init{
     self = [super init];
     if (self) {
         self.mainVC = [[YJMainViewController alloc] init];
@@ -50,6 +52,7 @@
     return self;
 }
 
+///展示左侧栏
 -(void)hideLeftVc{
     self.coverView.hidden = YES;
     self.coverView.alpha = 0.0;
@@ -57,9 +60,11 @@
         CGRect frame = self.mainVC.view.frame;
         frame.origin.x = 0;
         self.mainVC.view.frame = frame;
-    } completion:^(BOOL finished) {
-    }];
+    } completion:nil];
+    
 }
+
+///隐藏左侧栏
 -(void)showLeftVc{
     _coverView.hidden = NO;
     [_mainVC.view bringSubviewToFront:_coverView];
@@ -69,22 +74,29 @@
         frame.origin.x = leftSlideWidth;
         self.mainVC.view.frame = frame;
         self.coverView.alpha = 0.3f;
-    } completion:^(BOOL finished) {
-    }];
+    } completion:nil];
 }
 
 - (void)viewDidLoad{
     [super viewDidLoad];
+    //监听目录按钮的点击
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showLeftVc) name:Notification_showLeftVc object:nil];
+}
+
+
+-(void)dealloc{
+    //移除监听
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    //布局NavigationBar
     [self setUpNavBar];
-    
 }
+
 -(void)setUpNavBar{
     self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
     
@@ -100,11 +112,17 @@
 
     self.navigationItem.rightBarButtonItems = @[menuBtn, erjiBtn, spaceItem, giftBtn, spaceItem];
 }
+
+///导航栏返回键
 - (void)back{
+    //将状态栏改回默认
+    self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
+    //去除底部popView
     [YJReaderEasyPopView removeEasyPopViewWithAnimation:NO];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+///导航栏右键
 -(void)run{
     NSLog(@"%s", __func__);
 }

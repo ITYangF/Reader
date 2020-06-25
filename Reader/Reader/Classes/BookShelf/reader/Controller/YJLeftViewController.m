@@ -7,10 +7,10 @@
 //
 
 #import "YJLeftViewController.h"
-#import "YJLeftTopScrollView.h"
+#import "YJLeftTopView.h"
 #import "YJLeftContentScrollView.h"
+#import "YJTagNavView.h"
 
-static CGFloat screenMarginX = 50;
 
 @interface YJLeftViewController ()
 
@@ -20,19 +20,22 @@ static CGFloat screenMarginX = 50;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view .backgroundColor = [UIColor redColor];
+    self.view .backgroundColor = [UIColor whiteColor];
     
     //topScrollView
-    YJLeftTopScrollView *leftTopScrollView = [[YJLeftTopScrollView alloc] initWithFrame:CGRectMake(screenMarginX, 0, YJScreenWidth - screenMarginX, YJNavBarHeight)];
+    NSArray *titles = @[@"目录", @"想法", @"书签"];
+    YJLeftTopView *leftTopScrollView = [[YJLeftTopView alloc] initWithFrame:CGRectMake(0, 0, YJScreenWidth - 50, YJNavBarHeight)  titles:titles];
     [self.view addSubview:leftTopScrollView];
     
-    leftTopScrollView.backgroundColor = [UIColor redColor];
+    leftTopScrollView.backgroundColor = [UIColor whiteColor];
     
     //contentScrollView
-    YJLeftContentScrollView *leftContentScrollView = [[YJLeftContentScrollView alloc] initWithFrame:CGRectMake(screenMarginX, 0, YJScreenWidth - screenMarginX, YJNavBarHeight)];
-    [self.view addSubview:leftContentScrollView];
     
-    leftContentScrollView.backgroundColor = [UIColor greenColor];
+    YJLeftContentScrollView *leftContentScrollView = [[YJLeftContentScrollView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(leftTopScrollView.frame), YJScreenWidth - 50, YJScreenHeight - YJNavBarHeight)];
+    [self.view addSubview:leftContentScrollView];
+    leftContentScrollView.backgroundColor = [UIColor whiteColor];
+    
+    leftTopScrollView.delegate = leftContentScrollView;
 }
 
 @end
