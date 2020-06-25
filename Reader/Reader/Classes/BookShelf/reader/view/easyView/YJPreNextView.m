@@ -31,18 +31,7 @@
     btn.titleLabel.font = [UIFont systemFontOfSize:15];
     [btn setTintColor:[UIColor whiteColor]];
     [btn setTitle:title forState:UIControlStateNormal];
-    [btn addTarget:self action:@selector(btnDidClicked:) forControlEvents:UIControlEventTouchUpInside];
 }
-
--(void)setBtn:(UIButton *)btn withimage:(NSString *)image{
-    [btn setImage:[UIImage imageNamed:image] forState:UIControlStateNormal];
-    [btn addTarget:self action:@selector(btnDidClicked:) forControlEvents:UIControlEventTouchUpInside];
-}
-
--(void)btnDidClicked:(UIButton *)btn{
-    NSLog(@"%s", __func__);
-}
-
 
 -(void)setTopView{
     _topView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, YJScreenWidth, 40)];
@@ -50,6 +39,7 @@
 
     UIButton *preBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self setBtn:preBtn withtitle:@"上一章"];
+    [preBtn addTarget:self action:@selector(preBtnDidClicked:) forControlEvents:UIControlEventTouchUpInside];
     [_topView addSubview:preBtn];
     [preBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(_topView.mas_left);
@@ -61,6 +51,7 @@
     
     UIButton *nextBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self setBtn:nextBtn withtitle:@"下一章"];
+    [nextBtn addTarget:self action:@selector(nextBtnDidClicked:) forControlEvents:UIControlEventTouchUpInside];
     [_topView addSubview:nextBtn];
     [nextBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(_topView.mas_right);
@@ -83,9 +74,6 @@
         make.top.equalTo(_topView.mas_top);
         make.bottom.equalTo(_topView.mas_bottom);
     }];
-    
-    
-            
 }
 
 -(void)setMiddleView{
@@ -99,8 +87,9 @@
     [self addSubview:_bottomView];
 
     UIButton *muluBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self setBtn:muluBtn withimage:@"目录"];
     [_bottomView addSubview:muluBtn];
+    [muluBtn setImage:[UIImage imageNamed:@"目录"] forState:UIControlStateNormal];
+    [muluBtn addTarget:self action:@selector(muluBtnDidClicked:) forControlEvents:UIControlEventTouchUpInside];
     [muluBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(_bottomView.mas_left);
         make.top.equalTo(_middleView.mas_bottom);
@@ -109,9 +98,12 @@
     }];
 
     UIButton *moreBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self setBtn:moreBtn withtitle:@"Aa"];
-    moreBtn.titleLabel.font = [UIFont systemFontOfSize:25];
     [_bottomView addSubview:moreBtn];
+    moreBtn.titleLabel.font = [UIFont systemFontOfSize:25];
+    [moreBtn setTintColor:[UIColor whiteColor]];
+    [moreBtn setTitle:@"Aa" forState:UIControlStateNormal];
+    [moreBtn addTarget:self action:@selector(moreBtnDidClicked:) forControlEvents:UIControlEventTouchUpInside];
+    
     [moreBtn mas_makeConstraints:^(MASConstraintMaker *make) {
        make.right.equalTo(_bottomView.mas_right);
        make.top.equalTo(_bottomView.mas_top);
@@ -120,14 +112,34 @@
     }];
     
     UIButton *nigthBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self setBtn:nigthBtn withimage:@"night"];
     [_bottomView addSubview:nigthBtn];
+    [nigthBtn setImage:[UIImage imageNamed:@"night"] forState:UIControlStateNormal];
+    [nigthBtn addTarget:self action:@selector(btnDidClicked:) forControlEvents:UIControlEventTouchUpInside];
     [nigthBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(_bottomView.mas_centerX);
         make.centerY.equalTo(moreBtn.mas_centerY);
         make.width.equalTo(moreBtn.mas_width);
         make.height.equalTo(moreBtn.mas_height);
     }];
-    
 }
+
+
+-(void)btnDidClicked:(UIButton *)btn{
+    NSLog(@"%s", __func__);
+}
+
+-(void)preBtnDidClicked:(UIButton *)btn{
+    NSLog(@"%s", __func__);
+}
+-(void)nextBtnDidClicked:(UIButton *)btn{
+    NSLog(@"%s", __func__);
+}
+-(void)muluBtnDidClicked:(UIButton *)btn{
+    [[NSNotificationCenter defaultCenter] postNotificationName:Notification_showLeftVc object:nil];
+}
+
+-(void)moreBtnDidClicked:(UIButton *)btn{
+    [[NSNotificationCenter defaultCenter] postNotificationName:Notification_moreBtnClick object:nil];
+}
+
 @end

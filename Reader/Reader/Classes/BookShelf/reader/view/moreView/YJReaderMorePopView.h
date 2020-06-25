@@ -1,5 +1,5 @@
 //
-//  YJReaderPopView.h
+//  YJReaderMorePopView.h
 //  Reader
 //
 //  Created by Yang on 2020/6/25.
@@ -9,9 +9,10 @@
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
-@class YJReadViewController;
-@interface YJReaderPopView : UIView
-+ (void)readerPopViewWithController:(YJReadViewController *)viewController;
+
+@interface YJReaderMorePopView : UIView
++ (void)readerMorePopView;
++(void)removeMorePopView;
 @end
 
 NS_ASSUME_NONNULL_END

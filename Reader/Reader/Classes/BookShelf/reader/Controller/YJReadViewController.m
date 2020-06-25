@@ -7,61 +7,83 @@
 //
 
 #import "YJReadViewController.h"
+#import "YJMainViewController.h"
+#import "YJLeftViewController.h"
 #import "UIBarButtonItem+YJBarButtonItem.h"
-#import "YJReaderPopView.h"
+#import "YJReaderEasyPopView.h"
+
+#define leftSlideWidth (YJScreenWidth - 50)
 
 @interface YJReadViewController ()
-@property (nonatomic, assign) BOOL statusBarHidden;
+@property (nonatomic, strong) YJMainViewController * mainVC;
+@property (nonatomic, strong) YJLeftViewController * leftVC;
+@property (nonatomic, strong) UIView *coverView;
+@property (nonatomic, strong) UITapGestureRecognizer *tapGesture;
 @end
 
 @implementation YJReadViewController
-
-- (BOOL)prefersStatusBarHidden{
-    return self.statusBarHidden;
-}
-- (UIStatusBarStyle)preferredStatusBarStyle{
-    return UIStatusBarStyleLightContent;
-}
-
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    [self hiddenNavBarAndTabbar];
-}
-
-- (void)viewWillDisappear:(BOOL)animated{
-    [super viewWillDisappear:animated];
-    [self hiddenNavBarAndTabbar];
-    self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
-}
-
--(void)hiddenNavBarAndTabbar{
-    self.navigationController.navigationBarHidden = YES;
-    self.tabBarController.tabBar.hidden = YES;
-}
-
--(void)isHiddenStatusBar{
-    _statusBarHidden = !_statusBarHidden;
-    [self setNeedsStatusBarAppearanceUpdate];
-    [self.navigationController setNavigationBarHidden:_statusBarHidden animated:YES];
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        self.mainVC = [[YJMainViewController alloc] init];
+        self.leftVC = [[YJLeftViewController alloc] init];
+        
+        [self addChildViewController:self.leftVC];
+        [self addChildViewController:self.mainVC];
+        
+        [self.view addSubview:self.leftVC.view];
+        [self.view addSubview:self.mainVC.view];
+        
+        self.leftVC.view.frame = self.view.bounds;
+        self.mainVC.view.frame = self.view.bounds;
+        
+        _coverView = [[UIView alloc] initWithFrame:self.view.bounds];
+        _coverView.backgroundColor = UIColor.blackColor;
+        _coverView.alpha = 0;
+        _coverView.hidden = YES;
+        
+        _tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideLeftVc)];
+        [_coverView addGestureRecognizer:_tapGesture];
+        [self.mainVC.view addSubview:_coverView];
+    }
+    return self;
 }
 
--(void)hiddenNavBar{
-    [self isHiddenStatusBar];
+-(void)hideLeftVc{
+    self.coverView.hidden = YES;
+    self.coverView.alpha = 0.0;
+    [UIView animateWithDuration:0.25 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+        CGRect frame = self.mainVC.view.frame;
+        frame.origin.x = 0;
+        self.mainVC.view.frame = frame;
+    } completion:^(BOOL finished) {
+    }];
+}
+-(void)showLeftVc{
+    _coverView.hidden = NO;
+    [_mainVC.view bringSubviewToFront:_coverView];
+    
+    [UIView animateWithDuration:0.25 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+        CGRect frame = self.mainVC.view.frame;
+        frame.origin.x = leftSlideWidth;
+        self.mainVC.view.frame = frame;
+        self.coverView.alpha = 0.3f;
+    } completion:^(BOOL finished) {
+    }];
 }
 
-
-
-- (void)viewDidLoad {
+- (void)viewDidLoad{
     [super viewDidLoad];
-    _statusBarHidden = YES;
-    self.view.backgroundColor = [UIColor whiteColor];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showLeftVc) name:Notification_showLeftVc object:nil];
+}
+
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
     [self setUpNavBar];
     
-    
-}
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
-    [self isHiddenStatusBar];
-    [YJReaderPopView readerPopViewWithController:self];
 }
 -(void)setUpNavBar{
     self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
@@ -75,16 +97,13 @@
     UIBarButtonItem *menuBtn = [UIBarButtonItem btnWithImageName:@"channelMoreWhite" target:self action:@selector(run)];
     UIBarButtonItem *erjiBtn = [UIBarButtonItem btnWithImageName:@"icon_category_erji" target:self action:@selector(run)];
     UIBarButtonItem *giftBtn = [UIBarButtonItem btnWithImageName:@"read_top_gift" target:self action:@selector(run)];
-    
-//    UIBarButtonItem *goumaiBtn = [UIBarButtonItem btnWithTitle:@"购买" target:self action:@selector(run)];
 
     self.navigationItem.rightBarButtonItems = @[menuBtn, erjiBtn, spaceItem, giftBtn, spaceItem];
 }
-- (void)back
-{
+- (void)back{
+    [YJReaderEasyPopView removeEasyPopViewWithAnimation:NO];
     [self.navigationController popViewControllerAnimated:YES];
 }
-
 
 -(void)run{
     NSLog(@"%s", __func__);

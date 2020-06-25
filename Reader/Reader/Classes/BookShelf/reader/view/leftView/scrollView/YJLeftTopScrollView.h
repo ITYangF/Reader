@@ -1,8 +1,8 @@
 //
-//  YJReadViewController.h
+//  YJLeftTopScrollView.h
 //  Reader
 //
-//  Created by Yang on 2020/6/20.
+//  Created by Yang on 2020/6/26.
 //  Copyright © 2020 Yang. All rights reserved.
 //
 
@@ -10,7 +10,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface YJReadViewController : UIViewController
+@interface YJLeftTopScrollView : UIScrollView
+
 @end
 
 NS_ASSUME_NONNULL_END
