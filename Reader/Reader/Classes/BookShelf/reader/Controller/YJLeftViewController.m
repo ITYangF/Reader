@@ -13,10 +13,15 @@
 
 
 @interface YJLeftViewController ()
-
+@property (nonatomic, strong) YJLeftContentScrollView *leftContentScrollView;
 @end
 
 @implementation YJLeftViewController
+
+-(void)loadView{
+    [super loadView];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateContentScrollView:) name:Notification_upDateChapter object:nil];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -31,11 +36,20 @@
     
     //contentScrollView
     
-    YJLeftContentScrollView *leftContentScrollView = [[YJLeftContentScrollView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(leftTopScrollView.frame), YJScreenWidth - 50, YJScreenHeight - YJNavBarHeight)];
-    [self.view addSubview:leftContentScrollView];
-    leftContentScrollView.backgroundColor = [UIColor whiteColor];
+    _leftContentScrollView = [[YJLeftContentScrollView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(leftTopScrollView.frame), YJScreenWidth - 50, YJScreenHeight - YJNavBarHeight)];
+    [self.view addSubview:_leftContentScrollView];
+    _leftContentScrollView.backgroundColor = [UIColor whiteColor];
     
-    leftTopScrollView.delegate = leftContentScrollView;
+    leftTopScrollView.delegate = _leftContentScrollView;
+    
+    
+    
+
+}
+
+-(void)updateContentScrollView:(NSNotification *)note{
+    NSArray * temp = [note object];
+    [_leftContentScrollView updateAllTableView:temp];
 }
 
 @end

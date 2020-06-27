@@ -8,21 +8,142 @@
 
 #import "YJMainViewController.h"
 #import "YJReaderEasyPopView.h"
+#import "YJDisplayViewController.h"
+#import "YJReadItem.h"
+#import "YJChapterItem.h"
 
-@interface YJMainViewController ()
+@interface YJMainViewController ()<UIPageViewControllerDelegate, UIPageViewControllerDataSource, YJDisplayViewControllerDelegate>
+{
+    NSUInteger _chapter;
+    NSUInteger _page;
+    NSUInteger _chapterChange;
+    NSUInteger _pageChange;
+}
 @property (nonatomic, assign) BOOL statusBarHidden;
+@property (nonatomic, strong) UIPageViewController * pageVC;
+@property (nonatomic, strong) YJDisplayViewController * dispalyVC;
+@property (nonatomic, strong) YJReadItem * model;
+
 @end
 
 @implementation YJMainViewController
+
+- (instancetype)initWithModel:(YJReadItem *)model{
+    self = [super init];
+    if (self) {
+        self.model = model;
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showPopView) name:Notification_showPopView object:nil];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(isHiddenStatusBar) name:Notification_removePopView object:nil];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(muluBtnClick) name:Notification_showLeftVc object:nil];
+    }
+    return self;
+}
+
+
+-(void)showPopView{
+    [self isHiddenStatusBar];
+    [YJReaderEasyPopView readerEasyPopView];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
+    
     _statusBarHidden = YES;
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(isHiddenStatusBar) name:Notification_removePopView object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(muluBtnClick) name:Notification_showLeftVc object:nil];
+    [self addChildViewController:self.pageViewController];
+    _chapter = 0;
+    _page = 0;
+    [_pageVC setViewControllers:@[[self readViewWithChapter:_chapter page:_page]] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
 }
+
+-(UIPageViewController *)pageViewController
+{
+    if (!_pageVC) {
+        _pageVC = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStylePageCurl navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
+        _pageVC.delegate = self;
+        _pageVC.dataSource = self;
+        [self.view addSubview:_pageVC.view];
+    }
+    return _pageVC;
+}
+-(YJDisplayViewController *)readViewWithChapter:(NSUInteger)chapter page:(NSUInteger)page{
+    _dispalyVC = [[YJDisplayViewController alloc] init];
+    _dispalyVC.content =  [_model.chapters[chapter] stringOfPage:page];
+    _dispalyVC.delegate = self;
+    return _dispalyVC;
+}
+
+-(void)readViewEndEdit:(YJDisplayViewController *)readView
+{
+}
+-(void)readViewEditeding:(YJDisplayViewController *)readView
+{
+}
+
+
+///返回上一页
+- (nullable UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController
+{
+
+    _pageChange = _page;
+    _chapterChange = _chapter;
+
+    //第一张第一页
+    if (_chapterChange == 0 && _pageChange == 0) {
+        return nil;
+    }
+    //某章第一页
+    if (_pageChange == 0) {
+        //返回上一章
+        _chapterChange--;
+
+        //上一章最后一页
+        _pageChange = _model.chapters[_chapterChange].pageCount - 1;
+    }
+    else{
+        _pageChange--;
+    }
+
+    return [self readViewWithChapter:_chapterChange page:_pageChange];
+
+}
+
+
+///下一页
+- (nullable UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController
+{
+
+    _pageChange = _page;
+    _chapterChange = _chapter;
+
+    //本书的最后一章最后一页
+    if (_chapterChange == _model.chapters.count - 1 && _pageChange == _model.chapters.lastObject.pageCount - 1){
+        return nil;
+    }
+    //某章的最后一页
+    if (_pageChange == _model.chapters[_chapterChange].pageCount - 1) {
+        //下一章
+        _chapterChange++;
+        //页数归0
+        _pageChange = 0;
+    }
+    else{
+        //直接下一页
+        _pageChange++;
+    }
+    return [self readViewWithChapter:_chapterChange page:_pageChange];
+}
+//动画即将开始
+- (void)pageViewController:(UIPageViewController *)pageViewController willTransitionToViewControllers:(NSArray<UIViewController *> *)pendingViewControllers
+{
+    _chapter = _chapterChange;
+    _page = _pageChange;
+}
+
+
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -50,14 +171,13 @@
     [self.navigationController setNavigationBarHidden:_statusBarHidden animated:YES];
 }
 
+
 -(void)muluBtnClick{
     [YJReaderEasyPopView removeEasyPopViewWithAnimation:NO];
+    [[NSNotificationCenter defaultCenter] postNotificationName:Notification_upDateChapter object:_model.chapters];
 }
 
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
-    [self isHiddenStatusBar];
-    [YJReaderEasyPopView readerEasyPopView];
-}
+
 
 -(void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self];

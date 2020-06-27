@@ -44,7 +44,6 @@ CGFloat easyPopViewHeight = 102;
 +(void)removeEasyPopViewWithAnimation:(BOOL)isAnimation{
     if (easyPopView != nil) {
         
-        
         if (isAnimation) {
             [UIView animateWithDuration:0.3 animations:^{
                 easyPopView.frame = CGRectMake(0, YJScreenHeight, YJScreenWidth, easyPopViewHeight);

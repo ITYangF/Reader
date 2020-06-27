@@ -10,8 +10,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface YJMainViewController : UIViewController
+@class YJReadItem;
 
+@interface YJMainViewController : UIViewController
+-(instancetype)initWithModel:(YJReadItem *)model;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -11,6 +11,7 @@
 #import "YJLeftViewController.h"
 #import "UIBarButtonItem+YJBarButtonItem.h"
 #import "YJReaderEasyPopView.h"
+#import "YJReadItem.h"
 
 #define leftSlideWidth (YJScreenWidth - 50)
 
@@ -28,8 +29,16 @@
 - (instancetype)init{
     self = [super init];
     if (self) {
-        self.mainVC = [[YJMainViewController alloc] init];
+        
         self.leftVC = [[YJLeftViewController alloc] init];
+        NSError *error;
+       NSString *content = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"book" ofType:@".txt"] encoding:NSUTF8StringEncoding error:&error];
+       YJReadItem *model = [[YJReadItem alloc] initWithContent:content];
+        self.mainVC = [[YJMainViewController alloc] initWithModel:model];
+        
+        
+        
+        
         
         [self addChildViewController:self.leftVC];
         [self addChildViewController:self.mainVC];

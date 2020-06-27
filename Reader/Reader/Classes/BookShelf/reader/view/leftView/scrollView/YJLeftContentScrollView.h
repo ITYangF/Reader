@@ -12,7 +12,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface YJLeftContentScrollView : UIScrollView <YJLeftTopViewDelegate>
-
+-(void)updateAllTableView:(NSArray *)chapters;
 @end
 
 NS_ASSUME_NONNULL_END

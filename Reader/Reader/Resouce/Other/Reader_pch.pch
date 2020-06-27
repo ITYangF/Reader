@@ -22,7 +22,7 @@
 
 #define YJTabBarHeight (YJStatusBarHeight > 20 ? 83 : 49)
 
-#define YJIsIphoneX (YJStatusBarHeight > 20 ? YES : NO)
+#define YJIsIphoneX (YJBottomSafeHeight > 0 ? YES : NO)
 
 #define YJNavBarHeight (YJStatusBarHeight > 20 ? 88 : 64)
 
@@ -34,7 +34,7 @@
 
 #define YJRandomColor [UIColor colorWithRed:arc4random()%255/255.0 green:arc4random()%255/255.0 blue:arc4random()%255/255.0 alpha:1.0f]
 
-
+#define YJTopSafeHeight (YJStatusBarHeight > 20 ? 44 : 0)
 
 #define UIColorFromHex(s) [UIColor colorWithRed:(((s & 0xFF0000) >> 16))/255.0 green:(((s & 0xFF00) >> 8))/255.0 blue:((s & 0xFF))/255.0  alpha:1.0]
 
@@ -42,6 +42,8 @@
 
 
 #define Notification_moreBtnClick @"Notification_moreBtnClick"
-#define Notification_removePopView @"Notification_removePopView"
+#define Notification_showPopView @"Notification_showPopView"
 #define Notification_showLeftVc @"Notification_showLeftVc"
+#define Notification_upDateChapter @"Notification_upDateChapter"
+#define Notification_removePopView @"Notification_removePopView"
 #endif /* Reader_pch_pch */

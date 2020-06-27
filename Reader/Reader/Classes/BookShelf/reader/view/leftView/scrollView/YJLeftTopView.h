@@ -19,7 +19,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface YJLeftTopView : UIView
 -(instancetype)initWithFrame:(CGRect)frame titles:(NSArray *)titles;
--(void)selectBtnWithTag:(NSInteger)tag;
 @property (nonatomic, weak) id<YJLeftTopViewDelegate> delegate;
 @end
 
