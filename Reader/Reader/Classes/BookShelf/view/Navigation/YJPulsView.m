@@ -122,7 +122,6 @@ static NSString *Identifier = @"pulsCell";
     NSDictionary *dict = _dataArr[indexPath.row];
     cell.textLabel.text = dict[@"title"];
     cell.imageView.image = [UIImage imageNamed:dict[@"imageName"]];
-    cell.textLabel.text = _dataArr[indexPath.row];
     return cell;
 }
 
