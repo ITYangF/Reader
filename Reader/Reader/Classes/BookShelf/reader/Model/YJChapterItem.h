@@ -19,6 +19,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic) NSUInteger pageCount;
 
+
+
 -(NSString *)stringOfPage:(NSUInteger)index;
 @end
 

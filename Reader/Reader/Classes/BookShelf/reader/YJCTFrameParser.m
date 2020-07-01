@@ -54,7 +54,7 @@
 
 
 
-+(CGRect)parserRectWithPoint:(CGPoint)point frameRef:(CTFrameRef)frameRef withSeletedRange:(NSRange *)seletRange withcontent:(NSString *)content{
++(CGRect)parserRectWithPoint:(CGPoint)point frameRef:(CTFrameRef)frameRef withSeletedRange:(NSRange *)seletRange withcontent:(NSString *)content withHeight:(NSInteger *)num{
     //frameRef 从中拿到path
     CGPathRef pathRef = CTFrameGetPath(frameRef);
     //frameRef 从中拿到bounds
@@ -89,6 +89,7 @@
             CGFloat lineWidth = CTLineGetTypographicBounds(line, &ascent, &descent, &linegap);
             //获得line的frame
             CGRect lineFrame = CGRectMake(baselineOrigin.x, CGRectGetHeight(bounds)-baselineOrigin.y-ascent, lineWidth, ascent+descent+linegap+[YJReadConfig shareInstance].lineSpace);
+//            NSLog(@"%@",NSStringFromCGRect(lineFrame));
             
             if (CGRectContainsPoint(lineFrame,point)){
                 //获取line中文字在整段文字中的Range
@@ -106,7 +107,9 @@
                     sizeToFit = [space sizeWithFont:[UIFont systemFontOfSize:[YJReadConfig shareInstance].fontSize] constrainedToSize:CGSizeMake(CGFLOAT_MAX, 10) lineBreakMode:NSLineBreakByWordWrapping];
                 }
                 *seletRange = NSMakeRange(stringRange.location + index, stringRange.length - index);
-                rect = CGRectMake(origins[i].x + sizeToFit.width ,baselineOrigin.y - descent ,lineWidth - sizeToFit.width, ascent+descent);
+                rect = CGRectMake(lineFrame.origin.x + sizeToFit.width ,baselineOrigin.y - descent ,lineWidth - sizeToFit.width, ascent+descent);
+                
+                *num = baselineOrigin.y - lineFrame.origin.y;
                 break;
             }
 

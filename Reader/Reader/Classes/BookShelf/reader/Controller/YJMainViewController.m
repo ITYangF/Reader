@@ -53,7 +53,6 @@
 
 
 -(void)configChange{
-    NSLog(@"%s", __func__);
     [_pageVC setViewControllers:@[[self readViewWithChapter:_chapter page:_page]] direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
 }
 
