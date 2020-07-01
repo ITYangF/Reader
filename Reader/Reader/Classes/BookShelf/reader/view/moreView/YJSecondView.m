@@ -183,7 +183,6 @@
     }];
     [autoBtn.btn setImage:[UIImage originImageWithName:@"autoread"] forState:UIControlStateNormal];
     autoBtn.label.text = @"自动阅读";
-//    [yemaBtn.btn addTarget:self action:@selector(otherBtnClick:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 

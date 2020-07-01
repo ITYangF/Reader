@@ -11,6 +11,7 @@
 #import "YJReadView.h"
 #import "YJReadConfig.h"
 #import "YJCTFrameParser.h"
+#import "YJReadConfig.h"
 
 @interface YJDisplayViewController ()
 
@@ -21,7 +22,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.view.backgroundColor = [YJReadConfig shareInstance].theme;
    [self.view addSubview:self.readView];
+    
+    
 }
 
 -(YJReadView *)readView

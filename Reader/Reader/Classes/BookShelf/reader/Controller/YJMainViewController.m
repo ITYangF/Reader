@@ -24,6 +24,7 @@
 @property (nonatomic, strong) YJDisplayViewController * dispalyVC;
 @property (nonatomic, strong) YJReadItem * model;
 
+
 @end
 
 @implementation YJMainViewController
@@ -37,11 +38,56 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(isHiddenStatusBar) name:Notification_removePopView object:nil];
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(muluBtnClick) name:Notification_showLeftVc object:nil];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(jumpTocharpter:) name:Notification_hiddenLeftVc object:nil];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(preBtnClick:) name:Notification_preChapter object:nil];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(nextBtnClick:) name:Notification_NextChapter object:nil];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(configChange) name:Notification_configChange object:nil];
+        
     }
     return self;
 }
 
 
+-(void)configChange{
+    NSLog(@"%s", __func__);
+    [_pageVC setViewControllers:@[[self readViewWithChapter:_chapter page:_page]] direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
+}
+
+-(void)preBtnClick:(NSNotification *)note{
+    
+    __weak UISlider *slide = [note object];
+    _chapter = _chapter - 1;
+    _page = 0;
+    [_pageVC setViewControllers:@[[self readViewWithChapter:_chapter page:_page]] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
+    if (_chapter == 0) {
+        slide.value = 0.0;
+    }else{
+        slide.value = (1.0 / (_model.chapters.count - 1)) * _chapter;
+    }
+}
+
+-(void)nextBtnClick:(NSNotification *)note{
+     __weak UISlider *slide = [note object];
+    _chapter = _chapter + 1;
+    _page = 0;
+    [_pageVC setViewControllers:@[[self readViewWithChapter:_chapter page:_page]] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
+    if (_chapter == _model.chapters.count - 1) {
+        slide.value = 1.0;
+    }else{
+        slide.value = (1.0 / (_model.chapters.count - 1)) * _chapter;
+    }
+}
+
+-(void)jumpTocharpter:(NSNotification *)note{
+    NSUInteger chapter = [[note object] integerValue];
+    _chapter = chapter;
+    _page = 0;
+    [_pageVC setViewControllers:@[[self readViewWithChapter:_chapter page:_page]] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
+}
 -(void)showPopView{
     [self isHiddenStatusBar];
     [YJReaderEasyPopView readerEasyPopView];
@@ -176,8 +222,6 @@
     [YJReaderEasyPopView removeEasyPopViewWithAnimation:NO];
     [[NSNotificationCenter defaultCenter] postNotificationName:Notification_upDateChapter object:_model.chapters];
 }
-
-
 
 -(void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self];

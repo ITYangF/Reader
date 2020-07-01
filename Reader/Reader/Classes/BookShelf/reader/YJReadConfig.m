@@ -24,55 +24,25 @@
 {
     self = [super init];
     if (self) {
-        //从磁盘中读取
-//        NSData *data = [[NSUserDefaults standardUserDefaults] objectForKey:@"ReadConfig"];
-//        if (data) {
-//            //如果磁盘中存在
-//            NSKeyedUnarchiver *unarchive = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
-//            //取出赋值
-//            YJReadConfig *config = [unarchive decodeObjectForKey:@"ReadConfig"];
-//            
-//            //监听属性变化
-//            [config addObserver:config forKeyPath:@"fontSize" options:NSKeyValueObservingOptionNew context:NULL];
-//            [config addObserver:config forKeyPath:@"lineSpace" options:NSKeyValueObservingOptionNew context:NULL];
-//            [config addObserver:config forKeyPath:@"fontColor" options:NSKeyValueObservingOptionNew context:NULL];
-//            [config addObserver:config forKeyPath:@"theme" options:NSKeyValueObservingOptionNew context:NULL];
-//            return config;
-//        }
-        
         //不在磁盘中
-        _lineSpace = 10.0f;
+        _lineSpace = 14.0f;
         _fontSize = 14.0f;
         _fontColor = [UIColor blackColor];
-        _theme = [UIColor whiteColor];
-//        [self addObserver:self forKeyPath:@"fontSize" options:NSKeyValueObservingOptionNew context:NULL];
-//        [self addObserver:self forKeyPath:@"lineSpace" options:NSKeyValueObservingOptionNew context:NULL];
-//        [self addObserver:self forKeyPath:@"fontColor" options:NSKeyValueObservingOptionNew context:NULL];
-//        [self addObserver:self forKeyPath:@"theme" options:NSKeyValueObservingOptionNew context:NULL];
-//         [YJReadConfig updateLocalConfig:self];
+        _theme = UIColorFromHex(0xe8e8e8);
     }
     return self;
 }
-//
-//-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context
-//{
-//    [YJReadConfig updateLocalConfig:self];
-//}
-//
-//+(void)updateLocalConfig:(YJReadConfig *)config
-//{
-//    NSMutableData *data=[[NSMutableData alloc] init];
-//    NSKeyedArchiver *archiver=[[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
-//    [archiver encodeObject:config forKey:@"ReadConfig"];
-//    [archiver finishEncoding];
-//    [[NSUserDefaults standardUserDefaults] setObject:data forKey:@"ReadConfig"];
-//}
-//
-//-(void)encodeWithCoder:(NSCoder *)aCoder
-//{
-//    [aCoder encodeDouble:self.fontSize forKey:@"fontSize"];
-//    [aCoder encodeDouble:self.lineSpace forKey:@"lineSpace"];
-//    [aCoder encodeObject:self.fontColor forKey:@"fontColor"];
-//    [aCoder encodeObject:self.theme forKey:@"theme"];
-//}
+-(void)setFontSize:(CGFloat)fontSize{
+    _fontSize = fontSize;
+    [[NSNotificationCenter defaultCenter] postNotificationName:Notification_configChange object:nil];
+}
+
+- (void)setTheme:(UIColor *)theme{
+    _theme = theme;
+    [[NSNotificationCenter defaultCenter] postNotificationName:Notification_configChange object:nil];
+}
+-(void)setLineSpace:(CGFloat)lineSpace{
+    _lineSpace = lineSpace;
+    [[NSNotificationCenter defaultCenter] postNotificationName:Notification_configChange object:nil];
+}
 @end

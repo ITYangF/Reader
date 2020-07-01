@@ -20,17 +20,22 @@ CGFloat easyPopViewHeight = 102;
 +(void)readerEasyPopView{
     
     UIWindow *win = [[[UIApplication sharedApplication] windows] firstObject];
-    
-    bgEasyView = [[UIView alloc] initWithFrame:CGRectMake(0, YJNavBarHeight, YJScreenWidth, YJScreenHeight - YJNavBarHeight)];
-    [win addSubview:bgEasyView];
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapBackgroundClick)];
-    [bgEasyView addGestureRecognizer:tap];
-    
-    easyPopViewHeight = YJIsIphoneX ? (easyPopViewHeight + YJBottomSafeHeight) : easyPopViewHeight;
-    easyPopView = [[YJReaderEasyPopView alloc] initWithFrame:CGRectMake(0, YJScreenHeight, YJScreenWidth, easyPopViewHeight)];
-    [win addSubview:easyPopView];
-    easyPopView.backgroundColor = UIColorFromHex(0x595959);
-    
+    if (!bgEasyView) {
+         bgEasyView = [[UIView alloc] initWithFrame:CGRectMake(0, YJNavBarHeight, YJScreenWidth, YJScreenHeight - YJNavBarHeight)];
+        if (easyPopView) {
+            [win insertSubview:bgEasyView belowSubview:easyPopView];
+        }else{
+            [win addSubview:bgEasyView];
+        }
+           UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapBackgroundClick)];
+           [bgEasyView addGestureRecognizer:tap];
+    }
+    if (!easyPopView) {
+        easyPopViewHeight = YJIsIphoneX ? (easyPopViewHeight + YJBottomSafeHeight) : easyPopViewHeight;
+        easyPopView = [[YJReaderEasyPopView alloc] initWithFrame:CGRectMake(0, YJScreenHeight, YJScreenWidth, easyPopViewHeight)];
+        [win addSubview:easyPopView];
+        easyPopView.backgroundColor = UIColorFromHex(0x595959);
+    }
     [self show];
 }
 
@@ -49,18 +54,14 @@ CGFloat easyPopViewHeight = 102;
                 easyPopView.frame = CGRectMake(0, YJScreenHeight, YJScreenWidth, easyPopViewHeight);
             } completion:^(BOOL finished) {
                 [bgEasyView removeFromSuperview];
-                [easyPopView removeFromSuperview];
                 bgEasyView = nil;
-                easyPopView = nil;
                 easyPopViewHeight = 102;
             }];
            
         }else{
             easyPopView.frame = CGRectMake(0, YJScreenHeight, YJScreenWidth, easyPopViewHeight);
             [bgEasyView removeFromSuperview];
-            [easyPopView removeFromSuperview];
             bgEasyView = nil;
-            easyPopView = nil;
             easyPopViewHeight = 102;
         }
         

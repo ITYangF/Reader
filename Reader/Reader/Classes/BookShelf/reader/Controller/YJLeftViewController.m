@@ -49,7 +49,7 @@
 
 -(void)updateContentScrollView:(NSNotification *)note{
     NSArray * temp = [note object];
-    [_leftContentScrollView updateAllTableView:temp];
+    [_leftContentScrollView updateChapterTableView:temp];
 }
 
 @end

@@ -10,7 +10,7 @@
 #import "YJListTableView.h"
 #import "YJChapterItem.h"
 
-@interface YJLeftContentScrollView ()<UITableViewDataSource>
+@interface YJLeftContentScrollView ()<UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, strong) NSArray<YJChapterItem *> * chapters;
 @property (nonatomic, strong) NSMutableArray * tableViews;
 @end
@@ -38,6 +38,7 @@
         YJListTableView *tableView = [[YJListTableView alloc] initWithFrame:CGRectMake(self.frame.size.width * i, 0, self.frame.size.width, self.frame.size.height) style:UITableViewStylePlain];
         tableView.backgroundColor = [UIColor whiteColor];
         tableView.dataSource = self;
+        tableView.delegate = self;
         tableView.tableFooterView = [[UIView alloc] init];
         [self addSubview:tableView];
         [_tableViews addObject:tableView];
@@ -50,6 +51,10 @@
     for (UITableView *tableViwe  in _tableViews) {
         [tableViwe reloadData];
     }
+}
+-(void)updateChapterTableView:(NSArray *)chapters{
+    _chapters = chapters;
+    [_tableViews[0] reloadData];
 }
 
 
@@ -72,5 +77,9 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSLog(@"%s", __func__);
+    [[NSNotificationCenter defaultCenter] postNotificationName:Notification_hiddenLeftVc object:@(indexPath.row)];
+}
 
 @end

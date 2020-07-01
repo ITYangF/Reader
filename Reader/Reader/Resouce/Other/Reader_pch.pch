@@ -44,6 +44,10 @@
 #define Notification_moreBtnClick @"Notification_moreBtnClick"
 #define Notification_showPopView @"Notification_showPopView"
 #define Notification_showLeftVc @"Notification_showLeftVc"
+#define Notification_hiddenLeftVc @"Notification_hiddenLeftVc"
 #define Notification_upDateChapter @"Notification_upDateChapter"
 #define Notification_removePopView @"Notification_removePopView"
+#define Notification_preChapter @"Notification_preChapter"
+#define Notification_NextChapter @"Notification_NextChapter"
+#define Notification_configChange @"Notification_configChange"
 #endif /* Reader_pch_pch */

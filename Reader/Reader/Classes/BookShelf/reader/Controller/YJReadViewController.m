@@ -36,10 +36,6 @@
        YJReadItem *model = [[YJReadItem alloc] initWithContent:content];
         self.mainVC = [[YJMainViewController alloc] initWithModel:model];
         
-        
-        
-        
-        
         [self addChildViewController:self.leftVC];
         [self addChildViewController:self.mainVC];
         
@@ -57,6 +53,8 @@
         _tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideLeftVc)];
         [_coverView addGestureRecognizer:_tapGesture];
         [self.mainVC.view addSubview:_coverView];
+        
+        
     }
     return self;
 }
@@ -90,6 +88,7 @@
     [super viewDidLoad];
     //监听目录按钮的点击
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showLeftVc) name:Notification_showLeftVc object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hideLeftVc) name:Notification_hiddenLeftVc object:nil];
 }
 
 

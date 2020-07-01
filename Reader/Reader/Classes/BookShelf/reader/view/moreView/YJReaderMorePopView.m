@@ -16,17 +16,27 @@ CGFloat morePopViewHeight = 0;
 
 +(void)readerMorePopView{
     UIWindow *win = [[[UIApplication sharedApplication] windows] firstObject];
+    if (!bgMoreView) {
+        bgMoreView = [[UIView alloc] initWithFrame:CGRectMake(0, YJNavBarHeight, YJScreenWidth, YJScreenHeight - YJNavBarHeight)];
+        if (morePopView) {
+            [win insertSubview:bgMoreView belowSubview:morePopView];
+        }else{
+            [win addSubview:bgMoreView];
+        }
+       
+       UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapBackgroundClick)];
+       [bgMoreView addGestureRecognizer:tap];
+    }
+   
     
-    bgMoreView = [[UIView alloc] initWithFrame:CGRectMake(0, YJNavBarHeight, YJScreenWidth, YJScreenHeight - YJNavBarHeight)];
-    [win addSubview:bgMoreView];
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapBackgroundClick)];
-    [bgMoreView addGestureRecognizer:tap];
+    if (!morePopView) {
+        morePopViewHeight = YJScreenHeight * 0.4;
+        morePopViewHeight = YJIsIphoneX ? (morePopViewHeight + YJBottomSafeHeight) : morePopViewHeight;
+        morePopView = [[YJReaderMorePopView alloc] initWithFrame:CGRectMake(0, YJScreenHeight, YJScreenWidth, morePopViewHeight)];
+        [win addSubview:morePopView];
+        morePopView.backgroundColor = UIColorFromHex(0x595959);
+    }
     
-    morePopViewHeight = YJScreenHeight * 0.4;
-    morePopViewHeight = YJIsIphoneX ? (morePopViewHeight + YJBottomSafeHeight) : morePopViewHeight;
-    morePopView = [[YJReaderMorePopView alloc] initWithFrame:CGRectMake(0, YJScreenHeight, YJScreenWidth, morePopViewHeight)];
-    [win addSubview:morePopView];
-    morePopView.backgroundColor = UIColorFromHex(0x595959);
     [self show];
 }
 
@@ -43,10 +53,8 @@ CGFloat morePopViewHeight = 0;
             morePopView.frame = CGRectMake(0, YJScreenHeight, YJScreenWidth, morePopViewHeight);
         } completion:^(BOOL finished) {
             [bgMoreView removeFromSuperview];
-            [morePopView removeFromSuperview];
             bgMoreView = nil;
-            morePopView = nil;
-            morePopViewHeight = 0;
+            morePopViewHeight = YJScreenHeight * 0.4;
         }];
     }
 }

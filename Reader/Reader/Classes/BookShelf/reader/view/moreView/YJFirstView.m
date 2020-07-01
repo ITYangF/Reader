@@ -9,6 +9,16 @@
 #import "YJFirstView.h"
 #import "Masonry.h"
 #import "UIImage+YJImage.h"
+#import "YJReadConfig.h"
+
+
+@interface ThemeButton : UIButton
+@property (nonatomic, strong) UIColor * theme;
+@end
+
+@implementation ThemeButton
+
+@end
 
 @interface YJFirstView ()
 @property (nonatomic, strong) UIView * topView;
@@ -17,6 +27,7 @@
 @property (nonatomic, strong) UIButton * preBtn;
 @property (nonatomic, strong) UIButton * preInterval;
 @property (nonatomic, strong) UILabel *fontLabel;
+@property (nonatomic, strong) UISlider * slider;
 @end
 
 static CGFloat firstViewIndex = 150;
@@ -71,10 +82,11 @@ static CGFloat firstViewIndex = 150;
     
     UISlider *slider = [[UISlider alloc] init];
     [_topView addSubview:slider];
-    slider.value = 1.0;
+    self.slider = slider;
+    slider.value = 0.5;
     slider.minimumTrackTintColor = [UIColor redColor];
     [slider setThumbImage:[UIImage imageNamed:@"progressSlider2"] forState:UIControlStateNormal];
-
+    [slider addTarget:self action:@selector(justBrightness) forControlEvents:UIControlEventValueChanged];
     [slider mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(lowLight.mas_right);
         make.right.equalTo(higtLight.mas_left);
@@ -83,6 +95,9 @@ static CGFloat firstViewIndex = 150;
     }];
 }
 
+-(void)justBrightness{
+    [[UIScreen mainScreen] setBrightness:_slider.value];
+}
 
 -(void)setScrollViewMiddleView{
     _middleView = [[UIView alloc] init];
@@ -114,7 +129,7 @@ static CGFloat firstViewIndex = 150;
     UILabel *fontLabel = [[UILabel alloc] init];
     [_middleView addSubview:fontLabel];
     self.fontLabel = fontLabel;
-    fontLabel.text = @"5";
+    fontLabel.text = @"14";
     fontLabel.textAlignment = NSTextAlignmentCenter;
     fontLabel.tintColor = [UIColor whiteColor];
     [fontLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -156,11 +171,11 @@ static CGFloat firstViewIndex = 150;
 -(void)fontBtnClick:(UIButton *)btn{
     int index =  [_fontLabel.text intValue];
     if (btn.tag == firstViewIndex + YJTagIndex + 0) {
-        if (index == 4) return;
-        index--;
+        if (index == 10) return;
+        [YJReadConfig shareInstance].fontSize = --index;
     }else{
-        if (index == 12) return;
-        index++;
+        if (index == 18) return;
+        [YJReadConfig shareInstance].fontSize = ++index;
     }
     _fontLabel.text = [NSString stringWithFormat:@"%d", index];
 }
@@ -176,17 +191,17 @@ static CGFloat firstViewIndex = 150;
         make.height.equalTo(self.mas_height).with.dividedBy(4);
     }];
     
-    UIButton *btn1 = [[UIButton alloc] init];
+    ThemeButton *btn1 = [[ThemeButton alloc] init];
     [_colorView addSubview:btn1];
-    UIButton *btn2 = [[UIButton alloc] init];
+    ThemeButton *btn2 = [[ThemeButton alloc] init];
     [_colorView addSubview:btn2];
-    UIButton *btn3 = [[UIButton alloc] init];
+    ThemeButton *btn3 = [[ThemeButton alloc] init];
     [_colorView addSubview:btn3];
-    UIButton *btn4 = [[UIButton alloc] init];
+    ThemeButton *btn4 = [[ThemeButton alloc] init];
     [_colorView addSubview:btn4];
-    UIButton *btn5 = [[UIButton alloc] init];
+    ThemeButton *btn5 = [[ThemeButton alloc] init];
     [_colorView addSubview:btn5];
-    UIButton *btn6 = [[UIButton alloc] init];
+    ThemeButton *btn6 = [[ThemeButton alloc] init];
     [_colorView addSubview:btn6];
     
     
@@ -199,13 +214,15 @@ static CGFloat firstViewIndex = 150;
     
 }
 
--(void)imageViewDidClick:(UIButton *)btn{
+-(void)imageViewDidClick:(ThemeButton *)btn{
     _preBtn.layer.borderWidth = 0;
     btn.layer.borderWidth = 1;
     _preBtn = btn;
+    
+    [YJReadConfig shareInstance].theme = btn.theme;
 }
 
--(void)setimageView:(UIView *)preView withBtn:(UIButton *)btn color:(UIColor *)color{
+-(void)setimageView:(UIView *)preView withBtn:(ThemeButton *)btn color:(UIColor *)color{
     
     if (preView == _colorView) {
         [btn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -223,6 +240,7 @@ static CGFloat firstViewIndex = 150;
             make.width.height.equalTo(preView);
         }];
     }
+    btn.theme = color;
     btn.layer.borderColor = [UIColor redColor].CGColor;
     btn.layer.cornerRadius = 5;
     btn.layer.masksToBounds = YES;
@@ -242,10 +260,13 @@ static CGFloat firstViewIndex = 150;
     }];
     
     UIButton *sanBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    sanBtn.tag = 14.f;
     [interValView addSubview:sanBtn];
     UIButton *siBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    siBtn.tag = 12.f;
     [interValView addSubview:siBtn];
     UIButton *wuBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    wuBtn.tag = 10.f;
     [interValView addSubview:wuBtn];
     
     [siBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -293,5 +314,10 @@ static CGFloat firstViewIndex = 150;
     btn.layer.borderWidth = 1;
     btn.selected = YES;
     _preInterval = btn;
+    
+    [YJReadConfig shareInstance].lineSpace = btn.tag;
 }
 @end
+
+
+

@@ -9,6 +9,7 @@
 #import "YJReadView.h"
 #import "YJMagnifierView.h"
 #import "YJCTFrameParser.h"
+#import "YJReadConfig.h"
 
 
 @interface YJReadView (){BOOL _direction;
@@ -26,7 +27,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = [UIColor whiteColor];
+        self.backgroundColor = [YJReadConfig shareInstance].theme;
         _pathArray = [NSMutableArray array];
         [self addGestureRecognizer:({
             UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPress:)];

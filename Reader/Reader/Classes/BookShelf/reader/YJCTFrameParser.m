@@ -9,6 +9,8 @@
 #import "YJCTFrameParser.h"
 #import "YJReadConfig.h"
 
+
+
 @implementation YJCTFrameParser
 
 +(CTFrameRef)parserContent:(NSString *)content withFrame:(CGRect)frame
@@ -87,6 +89,7 @@
             CGFloat lineWidth = CTLineGetTypographicBounds(line, &ascent, &descent, &linegap);
             //获得line的frame
             CGRect lineFrame = CGRectMake(baselineOrigin.x, CGRectGetHeight(bounds)-baselineOrigin.y-ascent, lineWidth, ascent+descent+linegap+[YJReadConfig shareInstance].lineSpace);
+            
             if (CGRectContainsPoint(lineFrame,point)){
                 //获取line中文字在整段文字中的Range
                 CFRange stringRange = CTLineGetStringRange(line);

@@ -13,6 +13,8 @@
 @property (nonatomic, strong)UIView *topView;
 @property (nonatomic, strong)UIImageView *middleView;
 @property (nonatomic, strong)UIView *bottomView;
+@property (nonatomic, strong) UISlider *slider;
+@property (nonatomic, assign) BOOL isNight;;
 @end
 
 @implementation YJPreNextView
@@ -22,6 +24,7 @@
         [self setTopView];
         [self setMiddleView];
         [self setBottomView];
+        _isNight = NO;
     }
     return self;
 }
@@ -64,7 +67,9 @@
     
     UISlider *slider = [[UISlider alloc] init];
     [_topView addSubview:slider];
+    self.slider = slider;
     slider.value = 0.0;
+    slider.enabled = NO;
     slider.minimumTrackTintColor = [UIColor redColor];
     [slider setThumbImage:[UIImage imageNamed:@"progressSlider2"] forState:UIControlStateNormal];
 
@@ -125,14 +130,21 @@
 
 
 -(void)btnDidClicked:(UIButton *)btn{
-    NSLog(@"%s", __func__);
+    _isNight = !_isNight;
+    CGFloat brightness =  _isNight ? 0.5 : 0.2;
+    [[UIScreen mainScreen] setBrightness:brightness];
 }
 
 -(void)preBtnDidClicked:(UIButton *)btn{
-    NSLog(@"%s", __func__);
+    if (_slider.value != 0.0) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:Notification_preChapter object:_slider];
+        
+    }
 }
 -(void)nextBtnDidClicked:(UIButton *)btn{
-    NSLog(@"%s", __func__);
+    if (_slider.value != 1.0) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:Notification_NextChapter object:_slider];
+    }
 }
 -(void)muluBtnDidClicked:(UIButton *)btn{
     [[NSNotificationCenter defaultCenter] postNotificationName:Notification_showLeftVc object:nil];
