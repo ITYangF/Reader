@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface YJMainViewController : UIViewController
 -(instancetype)initWithModel:(YJReadItem *)model;
+-(void)removeAllReadView;
 @end
 
 NS_ASSUME_NONNULL_END

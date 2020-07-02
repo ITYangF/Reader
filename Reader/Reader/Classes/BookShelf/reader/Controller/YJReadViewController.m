@@ -123,6 +123,7 @@
 
 ///导航栏返回键
 - (void)back{
+    [_mainVC removeAllReadView];
     //将状态栏改回默认
     self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
     //去除底部popView

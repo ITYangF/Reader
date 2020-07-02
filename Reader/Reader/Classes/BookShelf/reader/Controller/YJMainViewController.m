@@ -50,6 +50,11 @@
     }
     return self;
 }
+-(void)removeAllReadView{
+    for (UIViewController *vc in _pageVC.viewControllers) {
+        [vc removeFromParentViewController];
+    }
+}
 
 
 -(void)configChange{
